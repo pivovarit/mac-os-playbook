@@ -2,4 +2,7 @@
 - hosts: all
   connection: local
   roles:
+    - htop
+    - make
+    - maven
     - docker
