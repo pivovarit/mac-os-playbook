@@ -28,3 +28,5 @@ if [[ ! -x /usr/local/bin/ansible ]];
 fi
 
 export PATH=/usr/local/bin:$PATH
+
+ansible-playbook playbook.yml -K
