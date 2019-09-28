@@ -2,20 +2,29 @@
 
 set -e
 
-if [[ $(/usr/bin/gcc 2>&1) =~ "no developer tools were found" ]] || [[ ! -x /usr/bin/gcc ]]; then
-    echo "Info   | Install   | xcode"
-    xcode-select --install
+if [[ $(/usr/bin/gcc 2>&1) =~ "no developer tools were found" ]] || [[ ! -x /usr/bin/gcc ]];
+    then
+        echo "Info   | Install   | xcode"
+        xcode-select --install
+    else
+        echo "Info   | OK        | xcode"
 fi
 
-if [[ ! -x /usr/local/bin/brew ]]; then
-    echo "Info   | Install   | homebrew"
-    ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+if [[ ! -x /usr/local/bin/brew ]];
+    then
+        echo "Info   | Install   | homebrew"
+        ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+    else
+        echo "Info   | OK        | homebrew"
 fi
 
-if [[ ! -x /usr/local/bin/ansible ]]; then
-    echo "Info   | Install   | Ansible"
-    brew update
-    brew install ansible
+if [[ ! -x /usr/local/bin/ansible ]];
+    then
+        echo "Info   | Install   | Ansible"
+        brew update
+        brew install ansible
+    else
+        echo "Info   | OK        | Ansible"
 fi
 
 export PATH=/usr/local/bin:$PATH
