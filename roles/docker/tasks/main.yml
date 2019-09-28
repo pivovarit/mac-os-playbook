@@ -1,5 +1,5 @@
 ---
-- name: Install Docker
+- name: install docker/docker-compose
   homebrew:
     name:
       - docker
