@@ -48,6 +48,7 @@ homebrew_cask:
   - iterm2
   - jetbrains-toolbox
   - jprofiler
+  - karabiner-elements
   - slack
   - spotify
   - sysdig-inspect
