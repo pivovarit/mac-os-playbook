@@ -2,12 +2,15 @@ homebrew:
   - aws-shell
   - awscli
   - bash
+  - bash-completion
   - curl
   - docker
   - docker-compose
   - elixir
   - erlang
   - git
+  - gnupg
+  - gnutls
   - hub
   - htop
   - jenv
