@@ -46,5 +46,11 @@ homebrew_cask:
   - google-chrome
   - google-hangouts
   - iterm2
+  - jetbrains-toolbox
+  - jprofiler
   - slack
   - spotify
+  - sysdig-inspect
+  - virtualbox
+  - vlc
+  - wireshark
