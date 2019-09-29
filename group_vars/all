@@ -25,6 +25,7 @@ homebrew:
   - pstree
   - python
   - ruby
+  - rust
   - sbt
   - scala
   - siege
@@ -36,3 +37,14 @@ homebrew:
   - watch
   - zlib
   - zsh
+  - zsh-syntax-highlighting
+
+homebrew_cask:
+  - atom
+  - docker
+  - dropbox
+  - google-chrome
+  - google-hangouts
+  - iterm2
+  - slack
+  - spotify
