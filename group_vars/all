@@ -1,0 +1,24 @@
+homebrew:
+  - aws-shell
+  - awscli
+  - bash
+  - curl
+  - docker
+  - docker-compose
+  - git
+  - hub
+  - htop
+  - jq
+  - make
+  - maven
+  - neofetch
+  - node
+  - pkg-config
+  - python
+  - ruby
+  - tree
+  - wget
+  - yadm
+  - watch
+  - zlib
+  - zsh

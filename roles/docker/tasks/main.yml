@@ -1,7 +1,0 @@
----
-- name: install docker/docker-compose
-  homebrew:
-    name:
-      - docker
-      - docker-compose
-    state: present

@@ -1,0 +1,7 @@
+- name: install packages
+  homebrew:
+    name: "{{ item.name|default(item) }}"
+    state: "{{ item.state|default('present') }}"
+    install_options: "{{ item.install_options | default(omit) }}"
+  loop: "{{ homebrew }}"
+  when: homebrew|default([])|count > 0
