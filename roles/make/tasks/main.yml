@@ -1,5 +1,0 @@
----
-- name: Install make
-  homebrew:
-    name: make
-    state: present
