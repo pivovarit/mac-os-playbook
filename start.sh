@@ -12,13 +12,13 @@ fi
 
 if [[ ! -x /usr/local/bin/ansible ]];
     then
-        echo "Info   | Install   | Ansible"
+        echo "Info   | Install   | ansible"
         brew update
         brew install ansible
     else
-        echo "Info   | OK        | Ansible"
+        echo "Info   | OK        | ansible"
 fi
 
 export PATH=/usr/local/bin:$PATH
 
-ansible-playbook playbook.yml -K
+ansible-playbook playbook.yml --syntax-check && ansible-playbook playbook.yml -K
