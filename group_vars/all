@@ -3,19 +3,33 @@ homebrew:
   - awscli
   - bash
   - curl
+  - docker
+  - docker-compose
+  - elixir
+  - erlang
   - git
   - hub
   - htop
+  - jenv
   - jq
   - make
   - maven
+  - mysql
   - neofetch
+  - nmap
   - node
   - pkg-config
+  - pstree
   - python
   - ruby
+  - rust
+  - sbt
+  - scala
+  - siege
+  - sysdig
   - tree
   - wget
+  - wrk
   - yadm
   - watch
   - zlib
