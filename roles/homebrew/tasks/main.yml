@@ -1,0 +1,21 @@
+- name: Updating Homebrew
+  homebrew:
+    update_homebrew: true
+  when: homebrew_check.stat.exists
+
+- name: Installing Homebrew Packages
+  homebrew:
+    name: "{{ item.name|default(item) }}"
+    state: present
+  loop: "{{ homebrew }}"
+  when: homebrew|default([])|count > 0
+
+
+- name: Installing Homebrew Cask Packages
+  homebrew_cask:
+    name: "{{ item.name|default(item) }}"
+    state: present
+    options: "{{ item.install_options | default(omit) }}"
+    accept_external_apps: yes
+  loop: "{{ homebrew_cask }}"
+  when: homebrew_cask|default([])|count > 0

@@ -2,4 +2,15 @@
 - hosts: all
   connection: local
   roles:
-    - misc
+    - homebrew
+
+  pre_tasks:
+    - name: Ensuring Homebrew Is Installed
+      stat:
+        path: "/usr/local/bin/brew"
+      register: "homebrew_check"
+
+    - name: Installing Homebrew
+      command: '/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
+      when: >
+        not homebrew_check.stat.exists

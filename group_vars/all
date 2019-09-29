@@ -3,8 +3,6 @@ homebrew:
   - awscli
   - bash
   - curl
-  - docker
-  - docker-compose
   - git
   - hub
   - htop
@@ -22,3 +20,14 @@ homebrew:
   - watch
   - zlib
   - zsh
+  - zsh-syntax-highlighting
+
+homebrew_cask:
+  - atom
+  - docker
+  - dropbox
+  - google-chrome
+  - google-hangouts
+  - iterm2
+  - slack
+  - spotify

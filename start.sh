@@ -10,14 +10,6 @@ if [[ $(/usr/bin/gcc 2>&1) =~ "no developer tools were found" ]] || [[ ! -x /usr
         echo "Info   | OK        | xcode"
 fi
 
-if [[ ! -x /usr/local/bin/brew ]];
-    then
-        echo "Info   | Install   | homebrew"
-        ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
-    else
-        echo "Info   | OK        | homebrew"
-fi
-
 if [[ ! -x /usr/local/bin/ansible ]];
     then
         echo "Info   | Install   | Ansible"
