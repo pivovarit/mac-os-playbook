@@ -2,22 +2,36 @@ homebrew:
   - aws-shell
   - awscli
   - bash
+  - bash-completion
   - curl
   - docker
   - docker-compose
+  - elixir
+  - erlang
   - git
+  - gnupg
+  - gnutls
   - hub
   - htop
+  - jenv
   - jq
   - make
   - maven
+  - mysql
   - neofetch
+  - nmap
   - node
   - pkg-config
+  - pstree
   - python
   - ruby
+  - sbt
+  - scala
+  - siege
+  - sysdig
   - tree
   - wget
+  - wrk
   - yadm
   - watch
   - zlib
