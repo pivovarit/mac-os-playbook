@@ -1,5 +1,5 @@
 ---
-- name: Set Finder settings
+- name: Set Finder Settings
   osx_defaults: domain=com.apple.finder key={{ item.key }} type={{ item.type }} value={{ item.value }}
   with_items:
     - { key: "ShowStatusBar", type: "bool", value: "true" }
@@ -14,7 +14,7 @@
   notify:
     - Kill Finder
 
-- name: Set Dock settings
+- name: Set Dock Settings
   osx_defaults: domain=com.apple.dock key={{ item.key }} type={{ item.type }} value={{ item.value }}
   with_items:
     - { key: "mouse-over-hilite-stack", type: "bool", value: "true" }
@@ -25,7 +25,7 @@
   notify:
     - Kill Dock
 
-- name: Set Safari settings
+- name: Set Safari Settings
   osx_defaults: domain=com.apple.Safari key={{ item.key }} type={{ item.type }} value={{ item.value }}
   with_items:
     - { key: "ShowFullURLInSmartSearchField", type: "bool", value: "true" }
@@ -36,12 +36,12 @@
   notify:
     - Kill Safari
 
-- name: Set Terminal settings
+- name: Set Terminal Settings
   osx_defaults: domain=com.apple.Terminal key={{ item.key }} type={{ item.type }} value={{ item.value }}
   with_items:
     - { key: "SecureKeyboardEntry", type: "bool", value: "true" }
 
-- name: Set global settings
+- name: Set Global Settings
   osx_defaults: domain=NSGlobalDomain key={{ item.key }} type={{ item.type }} value={{ item.value }}
   with_items:
     - { key: "NSTableViewDefaultSizeMode", type: "int", value: "1" }
@@ -57,7 +57,7 @@
     - { key: "NSAutomaticSpellingCorrectionEnabled", type: "bool", value: "false" }
     - { key: "com.apple.springing.delay", type: "float", value: "1.0" }
 
-- name: Set some other settings
+- name: Set Remaining Settings
   osx_defaults: domain={{ item.domain }} key={{ item.key }} type={{ item.type }} value={{ item.value }}
   with_items:
     - { domain: "com.apple.TextEdit", key: "RichText", type: "int", value: "0" }
