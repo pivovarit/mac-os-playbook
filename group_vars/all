@@ -1,4 +1,6 @@
+dotfiles_repository: https://github.com/pivovarit/dotfiles.git
 dock_icon_size: 60
+
 homebrew:
   - aws-shell
   - awscli
