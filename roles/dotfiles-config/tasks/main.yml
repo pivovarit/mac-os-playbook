@@ -1,4 +1,4 @@
 - name: Pull pivovarit/dotfiles Repository
   git:
-    repo: https://github.com/pivovarit/dotfiles.git
+    repo: "{{ dotfiles_repository }}"
     dest: "{{ ansible_env.HOME }}/dotfiles"
