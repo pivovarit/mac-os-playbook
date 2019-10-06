@@ -2,6 +2,7 @@
 - hosts: all
   connection: local
   roles:
+    - dotfiles-config
     - homebrew
 
   pre_tasks:
