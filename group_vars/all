@@ -1,3 +1,4 @@
+dock_icon_size: 55
 homebrew:
   - aws-shell
   - awscli
@@ -55,3 +56,4 @@ homebrew_cask:
   - virtualbox
   - vlc
   - wireshark
+

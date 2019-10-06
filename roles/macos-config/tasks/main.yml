@@ -1,0 +1,91 @@
+---
+- name: Set Finder settings
+  osx_defaults: domain=com.apple.finder key={{ item.key }} type={{ item.type }} value={{ item.value }}
+  with_items:
+    - { key: "ShowStatusBar", type: "bool", value: "true" }
+    - { key: "ShowPathbar", type: "bool", value: "true" }
+    - { key: "QLEnableTextSelection", type: "bool", value: "true" }
+    - { key: "_FXShowPosixPathInTitle", type: "bool", value: "true" }
+    - { key: "FXDefaultSearchScope", type: "string", value: "SCcf" }
+    - { key: "FXEnableExtensionChangeWarning", type: "bool", value: "false" }
+    - { key: "OpenWindowForNewRemovableDisk", type: "bool", value: "true" }
+    - { key: "FXPreferredViewStyle", type: "string", value: "Nlsv" }
+    - { key: "WarnOnEmptyTrash", type: "bool", value: "false" }
+  notify:
+    - Kill Finder
+
+- name: Set Dock settings
+  osx_defaults: domain=com.apple.dock key={{ item.key }} type={{ item.type }} value={{ item.value }}
+  with_items:
+    - { key: "mouse-over-hilite-stack", type: "bool", value: "true" }
+    - { key: "tilesize", type: "float", value: "{{ dock_icon_size }}" }
+    - { key: "show-process-indicators", type: "bool", value: "true" }
+    - { key: "expose-animation-duration", type: "float", value: "0.1" }
+    - { key: "dashboard-in-overlay", type: "bool", value: "false" }
+  notify:
+    - Kill Dock
+
+- name: Set Safari settings
+  osx_defaults: domain=com.apple.Safari key={{ item.key }} type={{ item.type }} value={{ item.value }}
+  with_items:
+    - { key: "ShowFullURLInSmartSearchField", type: "bool", value: "true" }
+    - { key: "AutoOpenSafeDownloads", type: "bool", value: "false" }
+    - { key: "com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled", type: "bool", value: "true" }
+    - { key: "IncludeInternalDebugMenu", type: "bool", value: "true" }
+    - { key: "IncludeDevelopMenu", type: "bool", value: "true" }
+  notify:
+    - Kill Safari
+
+- name: Set Terminal settings
+  osx_defaults: domain=com.apple.Terminal key={{ item.key }} type={{ item.type }} value={{ item.value }}
+  with_items:
+    - { key: "SecureKeyboardEntry", type: "bool", value: "true" }
+
+- name: Set global settings
+  osx_defaults: domain=NSGlobalDomain key={{ item.key }} type={{ item.type }} value={{ item.value }}
+  with_items:
+    - { key: "NSTableViewDefaultSizeMode", type: "int", value: "1" }
+    - { key: "NSNavPanelExpandedStateForSaveMode", type: "bool", value: "true" }
+    - { key: "NSNavPanelExpandedStateForSaveMode2", type: "bool", value: "true" }
+    - { key: "PMPrintingExpandedStateForPrint", type: "bool", value: "true" }
+    - { key: "PMPrintingExpandedStateForPrint2", type: "bool", value: "false" }
+    - { key: "NSDocumentSaveNewDocumentsToCloud", type: "bool", value: "false" }
+    - { key: "NSTextShowsControlCharacters", type: "bool", value: "true" }
+    - { key: "ApplePressAndHoldEnabled", type: "bool", value: "false" }
+    - { key: "AppleFontSmoothing", type: "int", value: "2" }
+    - { key: "AppleShowAllExtensions", type: "bool", value: "true" }
+    - { key: "NSAutomaticSpellingCorrectionEnabled", type: "bool", value: "false" }
+    - { key: "com.apple.springing.delay", type: "float", value: "1.0" }
+
+- name: Set some other settings
+  osx_defaults: domain={{ item.domain }} key={{ item.key }} type={{ item.type }} value={{ item.value }}
+  with_items:
+    - { domain: "com.apple.TextEdit", key: "RichText", type: "int", value: "0" }
+    - { domain: "com.apple.TextEdit", key: "PlainTextEncoding", type: "int", value: "4" }
+    - { domain: "com.apple.TextEdit", key: "PlainTextEncodingForWrite", type: "int", value: "4" }
+    - { domain: "com.apple.DiskUtility", key: "DUDebugMenuEnabled", type: "bool", value: "true" }
+    - { domain: "com.apple.DiskUtility", key: "image", type: "bool", value: "true" }
+    - { domain: "com.apple.ActivityMonitor", key: "OpenMainWindow", type: "bool", value: "true" }
+    - { domain: "com.apple.ActivityMonitor", key: "IconType", type: "int", value: "5" }
+    - { domain: "com.apple.ActivityMonitor", key: "ShowCategory", type: "int", value: "0" }
+    - { domain: "com.apple.ActivityMonitor", key: "SortColumn", type: "string", value: "CPUUsage" }
+    - { domain: "com.apple.ActivityMonitor", key: "SortDirection", type: "int", value: "0" }
+    - { domain: "com.apple.TimeMachine", key: "DoNotOfferNewDisksForBackup", type: "bool", value: "true" }
+    - { domain: "com.apple.print.PrintingPrefs", key: "Quit When Finished", type: "bool", value: "true" }
+    - { domain: "com.apple.mail", key: "AddressesIncludeNameOnPasteboard", type: "bool", value: "false" }
+    - { domain: "com.apple.frameworks.diskimages", key: "auto-open-ro-root", type: "bool", value: "true" }
+    - { domain: "com.apple.frameworks.diskimages", key: "auto-open-rw-root", type: "bool", value: "true" }
+    - { domain: "com.apple.desktopservices", key: "DSDontWriteNetworkStores", type: "bool", value: "true" }
+    - { domain: "com.apple.desktopservices", key: "DSDontWriteUSBStores", type: "bool", value: "true" }
+    - { domain: "com.apple.screencapture", key: "location", type: "string", value: "{{ ansible_env.HOME }}/Desktop" }
+    - { domain: "com.apple.screencapture", key: "type", type: "string", value: "png" }
+    - { domain: "com.apple.screencapture", key: "disable-shadow", type: "bool", value: "true" }
+    - { domain: "com.apple.BluetoothAudioAgent", key: "Apple Bitpool Min (editable)", type: "int", value: "40" }
+    - { domain: "com.apple.driver.AppleBluetoothMultitouch.trackpad", key: "Clicking", type: "int", value: "1" }
+    - { domain: "com.apple.SoftwareUpdate", key: "ScheduleFrequency", type: "int", value: "1" }
+    - { domain: "com.apple.SoftwareUpdate", key: "AutomaticCheckEnabled", type: "bool", value: "true" }
+    - { domain: "com.apple.SoftwareUpdate", key: "AutomaticDownload", type: "int", value: "1" }
+    - { domain: "com.apple.SoftwareUpdate", key: "CriticalUpdateInstall", type: "int", value: "1" }
+    - { domain: "com.apple.commerce", key: "AutoUpdate", type: "bool", value: "true" }
+    - { domain: "com.apple.helpviewer", key: "DevMode", type: "bool", value: "true" }
+    - { domain: "com.apple.ImageCapture", key: "disableHotPlug", type: "bool", value: "true" }
