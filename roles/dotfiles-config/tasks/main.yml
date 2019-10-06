@@ -1,4 +1,4 @@
-- name: Updating Homebrew
+- name: Pull pivovarit/dotfiles Repository
   git: >
         repo=https://github.com/pivovarit/dotfiles.git
         dest=/Users/grzegorzpiwowarek/dotfiles
