@@ -1,0 +1,4 @@
+- name: Clone Repository with Dotfiles
+  git: >
+    repo=https://github.com/pivovarit/dotfiles.git
+    dest=/Users/grzegorzpiwowarek/dotfiles/

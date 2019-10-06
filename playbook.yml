@@ -2,7 +2,7 @@
 - hosts: all
   connection: local
   roles:
-    - homebrew
+    - dotfiles
 
   pre_tasks:
     - name: Ensuring Homebrew Is Installed
