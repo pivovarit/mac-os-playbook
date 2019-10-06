@@ -1,4 +1,4 @@
-dock_icon_size: 55
+dock_icon_size: 60
 homebrew:
   - aws-shell
   - awscli
