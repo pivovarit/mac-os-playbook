@@ -11,3 +11,7 @@
   loop:
     - { src: "~/dotfiles/karabiner.json", dest: "~/.config/karabiner/karabiner.json" }
     - { src: "~/dotfiles/.zshrc", dest: "~/.zshrc"}
+    - { src: "~/dotfiles/.awsrc", dest: "~/.awsrc"}
+    - { src: "~/dotfiles/.gitrc", dest: "~/.gitrc"}
+    - { src: "~/dotfiles/.dockerrc", dest: "~/.dockerrc"}
+
