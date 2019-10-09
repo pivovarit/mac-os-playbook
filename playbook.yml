@@ -2,7 +2,9 @@
 - hosts: all
   connection: local
   roles:
+    - macos-config
     - dotfiles-config
+    - homebrew
 
   pre_tasks:
     - name: Ensuring Homebrew Is Installed
