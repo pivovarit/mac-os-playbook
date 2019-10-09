@@ -2,3 +2,12 @@
   git:
     repo: "{{ dotfiles_repository }}"
     dest: "{{ ansible_env.HOME }}/dotfiles"
+
+- name: Link dotfiles
+  file:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    state: link
+  loop:
+    - { src: "~/dotfiles/karabiner.json", dest: "~/.config/karabiner/karabiner.json" }
+    - { src: "~/dotfiles/.zshrc", dest: "~/.zshrc"}
