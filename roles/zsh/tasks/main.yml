@@ -1,3 +1,8 @@
+- name: Install oh-my-zsh
+  git:
+    repo: https://github.com/robbyrussell/oh-my-zsh.git
+    dest: ~/.oh-my-zsh
+
 - name: Add zsh
   lineinfile: >
     backup=yes
