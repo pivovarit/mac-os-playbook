@@ -20,9 +20,3 @@
 - name: Installing oh-my-zsh
   command: 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"'
   when: not oh-my-zsh_check.stat.exists
-
-- name: Add prose Theme
-  copy:
-    dest: ~/.oh-my-zsh/custom/themes/prose.zsh-theme
-    src: prose.zsh-theme
-  when: ansible_os_family == 'Darwin'
