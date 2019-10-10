@@ -10,3 +10,4 @@
 - name: Set zsh as Default
   shell: chsh -s /usr/local/bin/zsh {{ ansible_env.USER }}
   when: ansible_os_family == 'Darwin'
+  become: true
