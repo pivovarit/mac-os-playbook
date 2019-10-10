@@ -12,11 +12,11 @@
   when: ansible_os_family == 'Darwin'
   become: true
 
-- name: Ensuring oh-my-zsh Is Installed
-  stat:
-    path: "~/.oh-my-zsh"
-  register: "oh-my-zsh_check"
+- name: Download oh-my-zsh Installation Script
+  command: curl https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -o /tmp/install.sh
 
-- name: Installing oh-my-zsh
-  command: 'sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended'
-  when: not oh-my-zsh_check.stat.exists
+- name: Install oh-my-zsh - step1
+  command: chmod +x /tmp/install.sh
+
+- name: Install oh-my-zsh - step2
+  command: bash /tmp/install.sh "" --unattended && rm /tmp/install.sh
