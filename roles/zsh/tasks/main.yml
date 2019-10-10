@@ -20,3 +20,8 @@
 
 - name: Install oh-my-zsh - step2
   command: bash /tmp/install.sh "" --unattended && rm /tmp/install.sh
+
+- name: Install zsh-autosuggestions
+  git:
+    repo: https://github.com/zsh-users/zsh-autosuggestions
+    dest: ~/.oh-my-zsk/custom/plugins
