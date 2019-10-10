@@ -1,3 +1,8 @@
+- name: Ensuring oh-my-zsh Is Installed
+  stat:
+    path: "~/.oh-my-zsh/oh-my-zsh.sh"
+  register: "omz_check"
+
 - name: Add zsh
   lineinfile: >
     backup=yes
@@ -14,14 +19,17 @@
 
 - name: Download oh-my-zsh Installation Script
   command: curl https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -o /tmp/install.sh
+  when: not omz_check.stat.exists
 
 - name: Install oh-my-zsh - step1
   command: chmod +x /tmp/install.sh
+  when: not omz_check.stat.exists
 
 - name: Install oh-my-zsh - step2
   command: bash /tmp/install.sh "" --unattended && rm /tmp/install.sh
+  when: not omz_check.stat.exists
 
 - name: Install zsh-autosuggestions
   git:
     repo: https://github.com/zsh-users/zsh-autosuggestions
-    dest: ~/.oh-my-zsk/custom/plugins
+    dest: ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
