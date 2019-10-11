@@ -12,10 +12,11 @@
   when: ansible_os_family == 'Darwin'
   become: true
 
-- name: Set zsh as Default
-  shell: chsh -s /usr/local/bin/zsh {{ ansible_env.USER }}
-  when: ansible_os_family == 'Darwin'
-  become: true
+- name: Default to zsh
+  user:
+    name: "{{ ansible_env.USER }}"
+    shell: /usr/local/bin/zsh
+  become: yes
 
 - block:
   - name: Download oh-my-zsh Installation Script
@@ -30,3 +31,12 @@
   git:
     repo: https://github.com/zsh-users/zsh-autosuggestions
     dest: ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+
+- name: Enable tty_tickets
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    line: "Defaults tty_tickets"
+    validate: "visudo -cf %s"
+  become: yes
+  when: ansible_os_family == "Darwin"

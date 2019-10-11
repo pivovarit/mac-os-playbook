@@ -2,9 +2,6 @@
 - hosts: all
   connection: local
   roles:
-    - macos-config
-    - dotfiles-config
-    - homebrew
     - zsh
 
   pre_tasks:
@@ -16,16 +13,6 @@
     - name: Installing Homebrew
       command: '/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
       when: not homebrew_check.stat.exists
-
-    - name: Enable tty_tickets
-      lineinfile:
-        dest: /etc/sudoers
-        state: present
-        line: "Defaults tty_tickets"
-        validate: "visudo -cf %s"
-      become: yes
-      when: ansible_os_family == "Darwin"
-
 
   handlers:
     - name: Kill Dock
