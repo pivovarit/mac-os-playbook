@@ -17,16 +17,13 @@
   when: ansible_os_family == 'Darwin'
   become: true
 
-- name: Download oh-my-zsh Installation Script
-  command: curl https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -o /tmp/install.sh
-  when: not omz_installed.stat.exists
+- block:
+  - name: Download oh-my-zsh Installation Script
+    command: curl https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -o /tmp/install.sh
 
-- name: Install oh-my-zsh - step1
-  command: chmod +x /tmp/install.sh
-  when: not omz_installed.stat.exists
+  - name: Install oh-my-zsh
+    command: bash /tmp/install.sh "" --unattended && rm /tmp/install.sh
 
-- name: Install oh-my-zsh - step2
-  command: bash /tmp/install.sh "" --unattended && rm /tmp/install.sh
   when: not omz_installed.stat.exists
 
 - name: Install zsh-autosuggestions
