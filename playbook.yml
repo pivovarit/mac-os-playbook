@@ -17,26 +17,6 @@
       command: '/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
       when: not homebrew_check.stat.exists
 
-    - name: Configure sudo Without Password
-      lineinfile:
-        dest: /etc/sudoers
-        state: present
-        line: "{{ ansible_user_id }}	ALL=NOPASSWD: ALL"
-        insertafter:  '^%admin\tALL=\(ALL\) ALL'
-        validate: "visudo -cf %s"
-      become: yes
-      when: ansible_os_family == "Darwin"
-
-    - name: Enable tty_tickets
-      lineinfile:
-        dest: /etc/sudoers
-        state: present
-        line: "Defaults tty_tickets"
-        validate: "visudo -cf %s"
-      become: yes
-      when: ansible_os_family == "Darwin"
-
-
   handlers:
     - name: Kill Dock
       command: killall Dock

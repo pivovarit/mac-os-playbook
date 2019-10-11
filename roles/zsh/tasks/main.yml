@@ -1,7 +1,7 @@
 - name: Ensuring oh-my-zsh Is Installed
   stat:
     path: "~/.oh-my-zsh/oh-my-zsh.sh"
-  register: "omz_check"
+  register: "omz_installed"
 
 - name: Add zsh
   lineinfile: >
@@ -12,24 +12,31 @@
   when: ansible_os_family == 'Darwin'
   become: true
 
-- name: Set zsh as Default
-  shell: chsh -s /usr/local/bin/zsh {{ ansible_env.USER }}
-  when: ansible_os_family == 'Darwin'
-  become: true
+- name: Default to zsh
+  user:
+    name: "{{ ansible_env.USER }}"
+    shell: /usr/local/bin/zsh
+  become: yes
 
-- name: Download oh-my-zsh Installation Script
-  command: curl https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -o /tmp/install.sh
-  when: not omz_check.stat.exists
+- block:
+  - name: Download oh-my-zsh Installation Script
+    command: curl https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -o /tmp/install.sh
 
-- name: Install oh-my-zsh - step1
-  command: chmod +x /tmp/install.sh
-  when: not omz_check.stat.exists
+  - name: Install oh-my-zsh
+    command: bash /tmp/install.sh "" --unattended && rm /tmp/install.sh
 
-- name: Install oh-my-zsh - step2
-  command: bash /tmp/install.sh "" --unattended && rm /tmp/install.sh
-  when: not omz_check.stat.exists
+  when: not omz_installed.stat.exists
 
 - name: Install zsh-autosuggestions
   git:
     repo: https://github.com/zsh-users/zsh-autosuggestions
     dest: ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+
+- name: Enable tty_tickets
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    line: "Defaults tty_tickets"
+    validate: "visudo -cf %s"
+  become: yes
+  when: ansible_os_family == "Darwin"
