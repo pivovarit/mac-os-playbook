@@ -8,6 +8,11 @@
     - zsh
 
   pre_tasks:
+    - name: Validate if OSX
+      fail:
+        msg: "Detected an incompatible OS"
+      when: ansible_os_family != 'Darwin'
+
     - name: Ensuring Homebrew Is Installed
       stat:
         path: "/usr/local/bin/brew"
