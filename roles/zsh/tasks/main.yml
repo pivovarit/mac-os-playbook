@@ -9,7 +9,6 @@
     dest=/etc/shells
     regexp=^/usr/local/bin/zsh
     line=/usr/local/bin/zsh
-  when: ansible_os_family == 'Darwin'
   become: true
 
 - name: Default to zsh
@@ -39,4 +38,3 @@
     line: "Defaults tty_tickets"
     validate: "visudo -cf %s"
   become: yes
-  when: ansible_os_family == "Darwin"
