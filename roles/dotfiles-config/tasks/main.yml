@@ -21,5 +21,3 @@
     name: 'pull dotfiles'
     minute: '0'
     job: 'cd ~/dotfiles && git reset --hard origin/master && git clean -fxd && git pull -q'
-
-
