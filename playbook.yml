@@ -2,10 +2,7 @@
 - hosts: all
   connection: local
   roles:
-    - macos-config
     - dotfiles-config
-    - homebrew
-    - zsh
 
   pre_tasks:
     - name: Validate if OSX
