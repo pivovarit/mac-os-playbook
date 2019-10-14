@@ -16,3 +16,8 @@
     - { src: "~/dotfiles/.gitrc", dest: "~/.gitrc"}
     - { src: "~/dotfiles/.dockerrc", dest: "~/.dockerrc"}
 
+- name: Pull dotfiles Periodically
+  cron:
+    name: 'pull dotfiles'
+    minute: '0'
+    job: 'cd ~/dotfiles && git reset --hard origin/master && git clean -fxd && git pull -q'
