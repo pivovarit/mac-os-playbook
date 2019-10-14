@@ -60,9 +60,6 @@
 - name: Set Remaining Settings
   osx_defaults: domain={{ item.domain }} key={{ item.key }} type={{ item.type }} value={{ item.value }}
   with_items:
-    - { domain: "com.apple.TextEdit", key: "RichText", type: "int", value: "0" }
-    - { domain: "com.apple.TextEdit", key: "PlainTextEncoding", type: "int", value: "4" }
-    - { domain: "com.apple.TextEdit", key: "PlainTextEncodingForWrite", type: "int", value: "4" }
     - { domain: "com.apple.DiskUtility", key: "DUDebugMenuEnabled", type: "bool", value: "true" }
     - { domain: "com.apple.DiskUtility", key: "image", type: "bool", value: "true" }
     - { domain: "com.apple.ActivityMonitor", key: "OpenMainWindow", type: "bool", value: "true" }
@@ -89,3 +86,21 @@
     - { domain: "com.apple.commerce", key: "AutoUpdate", type: "bool", value: "true" }
     - { domain: "com.apple.helpviewer", key: "DevMode", type: "bool", value: "true" }
     - { domain: "com.apple.ImageCapture", key: "disableHotPlug", type: "bool", value: "true" }
+
+- name: Use Plaintext Mode for new TextEdit Documents
+  osx_defaults: domain=com.apple.TextEdit key=RichText type=int value=0
+
+- name: Open and Save Files as UTF-8 in TextEdit
+  osx_defaults: domain=com.apple.TextEdit key={{ item }} type=int value=4
+  with_items:
+    - PlainTextEncoding
+    - PlainTextEncodingForWrite
+
+- name: Enable debug menu in Disk Utility
+  osx_defaults: domain=com.apple.DiskUtility key={{ item }} type=bool value=true
+  with_items:
+    - DUDebugMenuEnabled
+    - advanced-image-options
+
+- name: Show the ~/Library folder
+  shell: chflags nohidden ~/Library
