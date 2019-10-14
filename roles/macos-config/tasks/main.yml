@@ -25,17 +25,6 @@
   notify:
     - Kill Dock
 
-- name: Set Safari Settings
-  osx_defaults: domain=com.apple.Safari key={{ item.key }} type={{ item.type }} value={{ item.value }}
-  with_items:
-    - { key: "ShowFullURLInSmartSearchField", type: "bool", value: "true" }
-    - { key: "AutoOpenSafeDownloads", type: "bool", value: "false" }
-    - { key: "com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled", type: "bool", value: "true" }
-    - { key: "IncludeInternalDebugMenu", type: "bool", value: "true" }
-    - { key: "IncludeDevelopMenu", type: "bool", value: "true" }
-  notify:
-    - Kill Safari
-
 - name: Set Terminal Settings
   osx_defaults: domain=com.apple.Terminal key={{ item.key }} type={{ item.type }} value={{ item.value }}
   with_items:
@@ -116,3 +105,26 @@
 
 - name: Sort activity monitor direction
   osx_defaults: domain=com.apple.ActivityMonitor key=SortDirection type=int value=0
+
+- name: Make Safari's search banners default to Contains instead of Starts With
+  osx_defaults: domain=com.apple.Safari key=FindOnPageMatchesWordStartsOnly type=bool value=false
+
+- name: Remove useless icons from Safari's bookmarks bar
+  osx_defaults: domain=com.apple.Safari key=ProxiesInBookmarksBar state=absent
+
+- name: Disable Safari's thumbnail cache
+  osx_defaults: domain=com.apple.Safari key=DebugSnapshotsUpdatePolicy type=int value=2
+
+- name: Enable Safari's debug menu
+  osx_defaults: domain=com.apple.Safari key=IncludeInternalDebugMenu type=bool value=true
+
+- name: Set Safari Settings
+  osx_defaults: domain=com.apple.Safari key={{ item.key }} type={{ item.type }} value={{ item.value }}
+  with_items:
+    - { key: "ShowFullURLInSmartSearchField", type: "bool", value: "true" }
+    - { key: "AutoOpenSafeDownloads", type: "bool", value: "false" }
+    - { key: "com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled", type: "bool", value: "true" }
+    - { key: "IncludeInternalDebugMenu", type: "bool", value: "true" }
+    - { key: "IncludeDevelopMenu", type: "bool", value: "true" }
+  notify:
+    - Kill Safari
