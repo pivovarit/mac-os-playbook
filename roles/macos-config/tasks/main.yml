@@ -115,9 +115,6 @@
 - name: Disable Safari's thumbnail cache
   osx_defaults: domain=com.apple.Safari key=DebugSnapshotsUpdatePolicy type=int value=2
 
-- name: Enable Safari's debug menu
-  osx_defaults: domain=com.apple.Safari key=IncludeInternalDebugMenu type=bool value=true
-
 - name: Set Safari Settings
   osx_defaults: domain=com.apple.Safari key={{ item.key }} type={{ item.type }} value={{ item.value }}
   with_items:
