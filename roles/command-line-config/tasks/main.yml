@@ -1,7 +1,27 @@
-- name: Ensuring oh-my-zsh Is Installed
-  stat:
-    path: "~/.oh-my-zsh/oh-my-zsh.sh"
-  register: "omz_installed"
+- name: Pull dotfiles Repository
+  git:
+    repo: "{{ dotfiles_repository }}"
+    dest: "{{ ansible_env.HOME }}/dotfiles"
+    force: yes
+
+- name: Link dotfiles
+  file:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    state: link
+  loop:
+    - { src: "~/dotfiles/karabiner.json", dest: "~/.config/karabiner/karabiner.json" }
+    - { src: "~/dotfiles/.zshrc", dest: "~/.zshrc"}
+    - { src: "~/dotfiles/.awsrc", dest: "~/.awsrc"}
+    - { src: "~/dotfiles/.miscrc", dest: "~/.miscrc"}
+    - { src: "~/dotfiles/.gitrc", dest: "~/.gitrc"}
+    - { src: "~/dotfiles/.dockerrc", dest: "~/.dockerrc"}
+
+- name: Pull dotfiles Periodically
+  cron:
+    name: 'pull dotfiles'
+    minute: '0'
+    job: 'cd ~/dotfiles && git reset --hard origin/master && git clean -fxd && git pull -q'
 
 - name: Add zsh
   lineinfile: >
@@ -17,6 +37,11 @@
     shell: /usr/local/bin/zsh
   become: yes
 
+- name: Ensuring oh-my-zsh Is Installed
+  stat:
+    path: "~/.oh-my-zsh/oh-my-zsh.sh"
+  register: "omz_installed"
+
 - block:
   - name: Download oh-my-zsh Installation Script
     command: curl https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -o /tmp/install.sh
@@ -31,12 +56,11 @@
     repo: https://github.com/zsh-users/zsh-autosuggestions
     dest: ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 
-- block:
-    - name: Install SDKMAN
-      shell: 'curl -s http://get.sdkman.io | bash executable=/bin/bash'
-
-    - name: Add sdkman in .zshrc
-      lineinfile: dest=~/.zshrc regexp="\/.sdkman/bin\/sdkman\-init\.sh" line='source ".sdkman/bin/sdkman-init.sh"'
+- name: Install SDKMAN
+  shell: 'curl -s http://get.sdkman.io | bash'
+  args:
+    executable: /bin/bash
+    warn: no
 
 - name: Add SDKMAN in .zshrc
   lineinfile:
