@@ -3,9 +3,9 @@
   connection: local
   roles:
     - macos-config
-    - dotfiles-config
     - homebrew
-    - zsh
+    - dotfiles-config
+    - command-line-config
 
   pre_tasks:
     - name: Validate if OSX
