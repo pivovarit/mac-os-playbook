@@ -31,6 +31,20 @@
     repo: https://github.com/zsh-users/zsh-autosuggestions
     dest: ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 
+- block:
+    - name: Install SDKMAN
+      shell: 'curl -s http://get.sdkman.io | bash executable=/bin/bash'
+
+    - name: Add sdkman in .zshrc
+      lineinfile: dest=~/.zshrc regexp="\/.sdkman/bin\/sdkman\-init\.sh" line='source ".sdkman/bin/sdkman-init.sh"'
+
+- name: Add SDKMAN in .zshrc
+  lineinfile:
+    dest: ~/.zshrc
+    regexp: 'sdkman-init.sh'
+    line: 'source $HOME/.sdkman/bin/sdkman-init.sh'
+    state: present
+
 - name: Enable tty_tickets
   lineinfile:
     dest: /etc/sudoers
