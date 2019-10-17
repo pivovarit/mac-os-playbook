@@ -24,11 +24,11 @@
     job: 'cd ~/dotfiles && git reset --hard origin/master && git clean -fxd && git pull -q'
 
 - name: Add zsh
-  lineinfile: >
-    backup=yes
-    dest=/etc/shells
-    regexp=^/usr/local/bin/zsh
-    line=/usr/local/bin/zsh
+  lineinfile:
+    backup: yes
+    dest: /etc/shells
+    regexp: ^/usr/local/bin/zsh
+    line: /usr/local/bin/zsh
   become: true
 
 - name: Default to zsh
