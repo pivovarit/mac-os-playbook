@@ -82,3 +82,17 @@
     line: "Defaults tty_tickets"
     validate: "visudo -cf %s"
   become: yes
+
+- name: Enforce OSX-specific Key Bindings
+  lineinfile:
+    dest: ~/.zshrc
+    regexp: "{{ item.value }}"
+    line: "bindkey \"{{ item.key }}\" {{ item.value }}"
+    state: present
+  with_items:
+    - { key: '[D', value: 'backward-word' }
+    - { key: '[C', value: 'forward-word' }
+    - { key: '^[a', value: 'beginning-of-line' }
+    - { key: '^[e', value: 'end-of-line' }
+    - { key: '\e[A', value: 'history-search-backward' }
+    - { key: '\e[B', value: 'history-search-forward' }
