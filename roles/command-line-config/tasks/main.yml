@@ -37,7 +37,7 @@
     shell: /usr/local/bin/zsh
   become: yes
 
-- name: Ensuring oh-my-zsh Is Installed
+- name: Verify if oh-my-zsh Is Installed
   stat:
     path: "~/.oh-my-zsh/oh-my-zsh.sh"
   register: "omz_installed"
@@ -56,11 +56,17 @@
     repo: https://github.com/zsh-users/zsh-autosuggestions
     dest: ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 
+- name: Verify if SDKMAN Is Installed
+  stat:
+    path: "~/.sdkman/"
+  register: "sdkman_installed"
+
 - name: Install SDKMAN
   shell: 'curl -s http://get.sdkman.io | bash'
   args:
     executable: /bin/bash
     warn: no
+  when: not sdkman_installed.stat.exists
 
 - name: Add SDKMAN in .zshrc
   lineinfile:
