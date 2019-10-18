@@ -21,7 +21,7 @@
   cron:
     name: 'pull dotfiles'
     minute: '0'
-    job: 'cd ~/dotfiles && git reset --hard origin/master && git clean -fxd && git pull -q'
+    job: 'cd ~/dotfiles && git reset --hard origin/master && git clean -fxd && git pull -q > ~/dotfiles-sync-log'
 
 - name: Add zsh
   lineinfile:
