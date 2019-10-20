@@ -31,10 +31,20 @@
     repo: https://github.com/zsh-users/zsh-autosuggestions
     dest: ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 
+- name: Remove zsh-autosuggestions .git directory
+  file:
+    state: absent
+    path: ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/.git
+
 - name: Install zsh-completions
   git:
     repo: https://github.com/zsh-users/zsh-completions
     dest: ~/.oh-my-zsh/custom/plugins/zsh-completions
+
+- name: Remove zsh-completions .git directory
+  file:
+    state: absent
+    path: ~/.oh-my-zsh/custom/plugins/zsh-completions/.git
 
 - name: Verify if SDKMAN Is Installed
   stat:
