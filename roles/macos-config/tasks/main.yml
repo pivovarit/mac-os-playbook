@@ -11,6 +11,7 @@
     - { key: "OpenWindowForNewRemovableDisk", type: "bool", value: "true" }
     - { key: "FXPreferredViewStyle", type: "string", value: "Nlsv" }
     - { key: "WarnOnEmptyTrash", type: "bool", value: "false" }
+    - { key: "ShowHardDrivesOnDesktop", type: "bool", value: "true" }
   notify:
     - Kill Finder
 
