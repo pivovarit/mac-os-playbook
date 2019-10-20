@@ -133,3 +133,8 @@
     - { key: "IncludeDevelopMenu", type: "bool", value: "true" }
   notify:
     - Kill Safari
+
+- name: Run iTerm At Login
+  command: osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/iTerm.app", hidden:true}'
+  ignore_errors: true
+  become: true
