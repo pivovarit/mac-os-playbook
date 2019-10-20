@@ -2,6 +2,11 @@
 
 set -e
 
+RED=""
+GREEN=""
+BLUE=""
+RESET=""
+
 error() {
 	echo "${RED}""Error: $@""${RESET}" >&2
 	exit 1
@@ -15,29 +20,21 @@ installing() {
 	echo "${BLUE}""Info   | Install   | $@""${RESET}"
 }
 
-exists() {
-	command -v "$@" >/dev/null 2>&1
-}
-
 if [ -t 1 ]; then
 		RED=$(printf '\033[31m')
 		GREEN=$(printf '\033[32m')
 		BLUE=$(printf '\033[34m')
 		RESET=$(printf '\033[m')
-	else
-		RED=""
-		GREEN=""
-		BLUE=""
-		RESET=""
 fi
 
-exists git || error "git is not installed"
+command -v "git" >/dev/null 2>&1 || error "git is not installed"
 
+REPOSITORY="https://github.com/pivovarit/mac-os-playbook"
 TARGET="$(pwd)"
 
-if [ "x$1" != "x--local" ]
+if [ "$1" != "--local" ]
     then
-      git clone -q --depth=1 https://github.com/pivovarit/mac-os-playbook || error "git clone of oh-my-zsh repo failed, run with --local if already cloned"
+      git clone -q --depth=1 "${REPOSITORY}" || error "git clone of oh-my-zsh repo failed, run with --local if already cloned"
 	    TARGET='mac-os-playbook/'
 fi
 
