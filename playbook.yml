@@ -38,6 +38,10 @@
       command: killall Safari
       ignore_errors: yes
 
+    - name: Kill SystemUIServer
+      command: killall SystemUIServer
+      ignore_errors: yes
+
     - name: Kill Terminal
       command: killall Terminal
       ignore_errors: yes
