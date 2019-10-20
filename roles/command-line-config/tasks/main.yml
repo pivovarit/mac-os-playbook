@@ -1,28 +1,3 @@
-- name: Pull dotfiles Repository
-  git:
-    repo: "{{ dotfiles_repository }}"
-    dest: "{{ ansible_env.HOME }}/dotfiles"
-    force: yes
-
-- name: Link dotfiles
-  file:
-    src: "{{ item.src }}"
-    dest: "{{ item.dest }}"
-    state: link
-  loop:
-    - { src: "~/dotfiles/karabiner.json", dest: "~/.config/karabiner/karabiner.json" }
-    - { src: "~/dotfiles/.zshrc", dest: "~/.zshrc"}
-    - { src: "~/dotfiles/.awsrc", dest: "~/.awsrc"}
-    - { src: "~/dotfiles/.miscrc", dest: "~/.miscrc"}
-    - { src: "~/dotfiles/.gitrc", dest: "~/.gitrc"}
-    - { src: "~/dotfiles/.dockerrc", dest: "~/.dockerrc"}
-
-- name: Pull dotfiles Periodically
-  cron:
-    name: 'pull dotfiles'
-    minute: '0'
-    job: 'cd ~/dotfiles && git reset --hard origin/master && git clean -fxd && git pull -q > ~/dotfiles-sync-log'
-
 - name: Add zsh
   lineinfile:
     backup: yes
@@ -55,6 +30,21 @@
   git:
     repo: https://github.com/zsh-users/zsh-autosuggestions
     dest: ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+
+- name: Remove zsh-autosuggestions .git directory
+  file:
+    state: absent
+    path: ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/.git
+
+- name: Install zsh-completions
+  git:
+    repo: https://github.com/zsh-users/zsh-completions
+    dest: ~/.oh-my-zsh/custom/plugins/zsh-completions
+
+- name: Remove zsh-completions .git directory
+  file:
+    state: absent
+    path: ~/.oh-my-zsh/custom/plugins/zsh-completions/.git
 
 - name: Verify if SDKMAN Is Installed
   stat:

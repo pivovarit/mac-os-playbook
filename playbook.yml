@@ -4,6 +4,7 @@
   roles:
     - macos-config
     - homebrew
+    - dotfiles-config
     - command-line-config
 
   pre_tasks:

@@ -1,4 +1,4 @@
-dotfiles_repository: https://github.com/pivovarit/dotfiles.git
+dotfiles_repository: pivovarit/dotfiles
 dock_icon_size: 60
 
 homebrew:
