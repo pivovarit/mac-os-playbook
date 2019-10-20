@@ -59,3 +59,11 @@ homebrew_cask:
   - vlc
   - wireshark
 
+github_projects:
+  - pivovarit/parallel-collectors
+  - pivovarit/articles
+  - pivovarit/es-collections
+  - pivovarit/throwing-function
+  - pivovarit/thread-factory
+  - pivovarit/pivovarit.github.io
+

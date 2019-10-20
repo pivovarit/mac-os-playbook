@@ -1,0 +1,17 @@
+- name: Create ~/Dev Directory
+  file:
+    state: directory
+    path: ~/Dev
+
+- name: Pull Repositories
+  git:
+    repo: "https://github.com/{{ item }}.git"
+    dest: "~/Dev/{{ item }}"
+    update: no
+  loop: "{{ github_projects }}"
+
+- name: Update Remote SSH URLs
+  command: "git remote set-url origin git@github.com:{{ item }}.git"
+  args:
+    chdir: "~/Dev/{{ item }}"
+  loop: "{{ github_projects }}"
