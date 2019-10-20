@@ -46,6 +46,11 @@
     - { key: "NSAutomaticSpellingCorrectionEnabled", type: "bool", value: "false" }
     - { key: "com.apple.springing.delay", type: "float", value: "1.0" }
 
+- name: Create ~/Screenshots Directory
+  file:
+    state: directory
+    path: "{{ ansible_env.HOME }}/Desktop/Screenshots"
+
 - name: Set Remaining Settings
   osx_defaults: domain={{ item.domain }} key={{ item.key }} type={{ item.type }} value={{ item.value }}
   with_items:
@@ -57,7 +62,7 @@
     - { domain: "com.apple.frameworks.diskimages", key: "auto-open-rw-root", type: "bool", value: "true" }
     - { domain: "com.apple.desktopservices", key: "DSDontWriteNetworkStores", type: "bool", value: "true" }
     - { domain: "com.apple.desktopservices", key: "DSDontWriteUSBStores", type: "bool", value: "true" }
-    - { domain: "com.apple.screencapture", key: "location", type: "string", value: "{{ ansible_env.HOME }}/Desktop" }
+    - { domain: "com.apple.screencapture", key: "location", type: "string", value: "{{ ansible_env.HOME }}/Desktop/Screenshots" }
     - { domain: "com.apple.screencapture", key: "type", type: "string", value: "png" }
     - { domain: "com.apple.screencapture", key: "disable-shadow", type: "bool", value: "true" }
     - { domain: "com.apple.BluetoothAudioAgent", key: "Apple Bitpool Min (editable)", type: "int", value: "40" }
@@ -69,6 +74,8 @@
     - { domain: "com.apple.commerce", key: "AutoUpdate", type: "bool", value: "true" }
     - { domain: "com.apple.helpviewer", key: "DevMode", type: "bool", value: "true" }
     - { domain: "com.apple.ImageCapture", key: "disableHotPlug", type: "bool", value: "true" }
+  notify:
+    - Kill SystemUIServer
 
 - name: Use Plaintext Mode for new TextEdit Documents
   osx_defaults: domain=com.apple.TextEdit key=RichText type=int value=0
