@@ -28,6 +28,18 @@
     - { src: "~/dotfiles/.gitrc", dest: "~/.gitrc"}
     - { src: "~/dotfiles/.dockerrc", dest: "~/.dockerrc"}
 
+- name: Source dotfiles in .zshrc
+  lineinfile:
+    dest: ~/.zshrc
+    regexp: "{{ item }}"
+    line: "source $HOME/{{ item }}"
+    state: present
+  with_items:
+    - '.awsrc'
+    - '.miscrc'
+    - '.gitrc'
+    - '.dockerrc'
+
 - name: Pull dotfiles Periodically
   cron:
     name: 'pull dotfiles'
