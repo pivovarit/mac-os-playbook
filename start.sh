@@ -18,10 +18,10 @@ git clone --depth=1 https://github.com/pivovarit/mac-os-playbook || {
 
 if [[ $(/usr/bin/gcc 2>&1) =~ "no developer tools were found" ]] || [[ ! -x /usr/bin/gcc ]];
     then
-        echo "${BLUE}Info   | Install   | xcode${RESET}"
+        echo "Info   | Install   | xcode"
         xcode-select --install
     else
-        echo "${BLUE}Info   | OK        | xcode${RESET}"
+        echo "Info   | OK        | xcode"
 fi
 
 if [[ ! -x /usr/local/bin/ansible ]];
