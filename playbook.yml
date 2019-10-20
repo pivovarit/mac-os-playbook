@@ -6,6 +6,7 @@
     - homebrew
     - dotfiles-config
     - command-line-config
+    - dev-env-config
 
   pre_tasks:
     - name: Validate if OSX
