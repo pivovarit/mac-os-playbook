@@ -4,6 +4,7 @@ set -e
 
 error() {
 	echo "${RED}""Error: $@""${RESET}" >&2
+	exit 1
 }
 
 ok() {
@@ -30,13 +31,13 @@ if [ -t 1 ]; then
 		RESET=""
 fi
 
-exists git || (error "git is not installed" && exit 1)
+exists git || error "git is not installed"
 
 TARGET="$(pwd)"
 
 if [ "x$1" != "x--local" ]
     then
-      git clone -q --depth=1 https://github.com/pivovarit/mac-os-playbook || ( error "git clone of oh-my-zsh repo failed, run with --local if already cloned" && exit 1 )
+      git clone -q --depth=1 https://github.com/pivovarit/mac-os-playbook || error "git clone of oh-my-zsh repo failed, run with --local if already cloned"
 	    TARGET='mac-os-playbook/'
 fi
 
