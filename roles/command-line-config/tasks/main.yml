@@ -32,6 +32,13 @@
     repo: https://github.com/zsh-users/zsh-completions
     dest: ~/.oh-my-zsh/custom/plugins/zsh-completions
 
+- name: Set Plugins
+  lineinfile:
+    dest: ~/.zshrc
+    regexp: '^plugins'
+    line: 'plugins=(git aws docker zsh-autosuggestions zsh-completions dotenv osx)'
+    state: present
+
 - name: Verify if SDKMAN Is Installed
   stat:
     path: "~/.sdkman/"
@@ -58,6 +65,13 @@
     line: "Defaults tty_tickets"
     validate: "visudo -cf %s"
   become: yes
+
+- name: Update zsh Daily
+  lineinfile:
+    dest: ~/.zshrc
+    regexp: 'UPDATE_ZSH_DAYS'
+    line: 'export UPDATE_ZSH_DAYS=1'
+    state: present
 
 - name: Enforce OSX-specific Key Bindings
   lineinfile:
