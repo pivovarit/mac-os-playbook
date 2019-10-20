@@ -17,11 +17,11 @@
     - name: Ensuring Homebrew Is Installed
       stat:
         path: "/usr/local/bin/brew"
-      register: "homebrew_check"
+      register: "homebrew_installed"
 
     - name: Installing Homebrew
       command: '/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
-      when: not homebrew_check.stat.exists
+      when: not homebrew_installed.stat.exists
 
   handlers:
     - name: Kill Dock
