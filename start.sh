@@ -35,4 +35,6 @@ fi
 
 export PATH=/usr/local/bin:$PATH
 
-ansible-playbook mac-os-playbook/playbook.yml --syntax-check && ansible-playbook mac-os-playbook/playbook.yml -K
+cd mac-os-playbook
+
+ansible-playbook playbook.yml -K
