@@ -65,6 +65,9 @@
     line: 'source $HOME/.sdkman/bin/sdkman-init.sh'
     state: present
 
+- name: Update SDKMAN
+  command: sdk update
+
 - name: Enable tty_tickets
   lineinfile:
     dest: /etc/sudoers
