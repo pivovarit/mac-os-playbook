@@ -43,7 +43,7 @@
   lineinfile:
     dest: ~/.zshrc
     regexp: '^plugins'
-    line: 'plugins=(git aws docker zsh-autosuggestions zsh-completions dotenv osx)'
+    line: 'plugins=(git aws gradle docker zsh-autosuggestions zsh-completions dotenv osx)'
     state: present
 
 - name: Verify if SDKMAN Is Installed
