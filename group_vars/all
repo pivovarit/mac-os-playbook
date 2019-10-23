@@ -57,8 +57,6 @@ homebrew_cask:
 
 dockitems_to_remove:
   - Launchpad
-  - Mail
-  - Safari
   - Contacts
   - Notes
   - Reminders
@@ -69,7 +67,6 @@ dockitems_to_remove:
   - iTunes
   - iBooks
   - App Store
-  - System Preferences
   - Calendar
   - Siri
 
