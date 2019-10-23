@@ -65,9 +65,6 @@
     line: 'source $HOME/.sdkman/bin/sdkman-init.sh'
     state: present
 
-- name: Update SDKMAN
-  command: sdk update
-
 - name: Enable tty_tickets
   lineinfile:
     dest: /etc/sudoers
@@ -96,7 +93,6 @@
     - { key: '^[e', value: 'end-of-line' }
     - { key: '\e[A', value: 'history-search-backward' }
     - { key: '\e[B', value: 'history-search-forward' }
-    -
 
 - name: Update completions and compinit
   shell: autoload -U compinit && compinit

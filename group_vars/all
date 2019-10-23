@@ -10,8 +10,6 @@ homebrew:
   - curl
   - docker
   - docker-compose
-  - elixir
-  - erlang
   - git
   - gnupg
   - gnutls
@@ -41,7 +39,6 @@ homebrew:
   - watch
   - zlib
   - zsh
-  - zsh-syntax-highlighting
 
 homebrew_cask:
   - atom
@@ -85,4 +82,5 @@ github_projects:
   - pivovarit/throwing-function
   - pivovarit/thread-factory
   - pivovarit/pivovarit.github.io
+  - pivovarit/mac-os-playbook
 
