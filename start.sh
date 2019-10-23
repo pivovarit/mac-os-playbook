@@ -55,3 +55,4 @@ fi
 export PATH=/usr/local/bin:$PATH
 
 cd $TARGET && ansible-playbook playbook.yml -K
+rm -rf mac-os-playbook/
