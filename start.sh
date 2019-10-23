@@ -8,23 +8,23 @@ BLUE=""
 RESET=""
 
 error() {
-	echo "${RED}""Error: $@""${RESET}" >&2
-	exit 1
+    echo "${RED}""Error: $@""${RESET}" >&2
+    exit 1
 }
 
 ok() {
-	echo "${GREEN}""Info   | OK        | $@""${RESET}"
+    echo "${GREEN}""Info   | OK        | $@""${RESET}"
 }
 
 installing() {
-	echo "${BLUE}""Info   | Install   | $@""${RESET}"
+    echo "${BLUE}""Info   | Install   | $@""${RESET}"
 }
 
 if [ -t 1 ]; then
-		RED=$(printf '\033[31m')
-		GREEN=$(printf '\033[32m')
-		BLUE=$(printf '\033[34m')
-		RESET=$(printf '\033[m')
+    RED=$(printf '\033[31m')
+    GREEN=$(printf '\033[32m')
+    BLUE=$(printf '\033[34m')
+    RESET=$(printf '\033[m')
 fi
 
 command -v "git" >/dev/null 2>&1 || error "git is not installed"
@@ -37,7 +37,7 @@ if [ "$1" != "--local" ]
         PLAYBOOK_LOCATION=$(mktemp -d -t playbook)
 	echo "Cloning playbook configuration into: ${PLAYBOOK_LOCATION}"
         trap 'rm -rf "$PLAYBOOK_LOCATION"' EXIT
-        git clone -q --depth=1 "${REPOSITORY}" $PLAYBOOK_LOCATION || error "git clone of playbook repo failed, run with --local if already cloned"
+        git clone -q --depth=1 "${REPOSITORY}" "$PLAYBOOK_LOCATION" || error "git clone of playbook repo failed, run with --local if already cloned"
         TARGET="$PLAYBOOK_LOCATION"
 fi
 
@@ -57,6 +57,6 @@ fi
 
 export PATH=/usr/local/bin:$PATH
 
-cd $TARGET && ansible-playbook playbook.yml -K
+cd "$TARGET" && ansible-playbook playbook.yml -K
 
 
