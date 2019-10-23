@@ -132,6 +132,13 @@
 - name: Disable CrashReporter
   command: defaults write com.apple.CrashReporter DialogType -string "none"
 
+- name: Enable HostInfo
+  command: defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
+
+- name: Add LoginWindowText
+  command: sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText -string 'gpiwowarek@gmail.com'
+  become: true
+
 - name: Set Safari Settings
   osx_defaults: domain=com.apple.Safari key={{ item.key }} type={{ item.type }} value={{ item.value }}
   with_items:
