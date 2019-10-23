@@ -18,4 +18,5 @@
     state: present
     options: "{{ item.install_options | default(omit) }}"
     accept_external_apps: yes
+  ignore_errors: true
   loop: "{{ homebrew_cask }}"
