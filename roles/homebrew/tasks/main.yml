@@ -10,6 +10,7 @@
 
 - name: Refreshing sudo Cache
   command: "echo none"
+  changed_when: false
   become: yes
 
 - name: Installing Homebrew Cask Packages
