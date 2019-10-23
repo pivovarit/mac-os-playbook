@@ -93,8 +93,3 @@
     - { key: '^[e', value: 'end-of-line' }
     - { key: '\e[A', value: 'history-search-backward' }
     - { key: '\e[B', value: 'history-search-forward' }
-
-- name: Update completions and compinit
-  shell: autoload -U compinit && compinit
-  args:
-    executable: /usr/bin/zsh
