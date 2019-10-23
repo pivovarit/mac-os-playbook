@@ -138,3 +138,8 @@
   command: osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/iTerm.app", hidden:true}'
   ignore_errors: true
   become: true
+
+- name: Remove all crap from Dock
+  shell: dockutil --remove '{{ item }}'
+  ignore_errors: true
+  with_items: "{{ dockitems_to_remove  }}"

@@ -2,6 +2,7 @@ dotfiles_repository: pivovarit/dotfiles
 dock_icon_size: 60
 
 homebrew:
+  - dockutil
   - aws-shell
   - awscli
   - bash
@@ -55,6 +56,24 @@ homebrew_cask:
   - virtualbox
   - vlc
   - wireshark
+
+dockitems_to_remove:
+  - Launchpad
+  - Mail
+  - Safari
+  - Contacts
+  - Notes
+  - Reminders
+  - Maps
+  - Photos
+  - Messages
+  - FaceTime
+  - iTunes
+  - iBooks
+  - App Store
+  - System Preferences
+  - Calendar
+  - Siri
 
 github_projects:
   - pivovarit/parallel-collectors
