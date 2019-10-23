@@ -31,6 +31,8 @@ PLAYBOOK_LOCATION=~/tmp/playbook
 REPOSITORY="https://github.com/pivovarit/mac-os-playbook"
 TARGET="$(pwd)"
 
+trap 'rm -rf "$PLAYBOOK_LOCATION"' EXIT
+
 if [ "$1" != "--local" ]
     then
         git clone -q --depth=1 "${REPOSITORY}" $PLAYBOOK_LOCATION || error "git clone of playbook repo failed, run with --local if already cloned"
@@ -54,5 +56,5 @@ fi
 export PATH=/usr/local/bin:$PATH
 
 cd $TARGET && ansible-playbook playbook.yml -K
-rm -rf PLAYBOOK_LOCATION
+
 
