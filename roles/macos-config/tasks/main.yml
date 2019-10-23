@@ -137,7 +137,7 @@
   become: true
 
 - name: Add LoginWindowText
-  command: sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText -string 'gpiwowarek@gmail.com'
+  command: defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText -string 'Lasciate ogne speranza, voi ch’intrate'
   become: true
 
 - name: Set Safari Settings
