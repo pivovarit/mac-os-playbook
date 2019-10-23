@@ -129,6 +129,9 @@
 - name: Enable Tap to Click
   osx_defaults: domain=com.apple.AppleMultitouchTrackpad key=Clicking type=int value=1
 
+- name: Disable CrashReporter
+  command: defaults write com.apple.CrashReporter DialogType -string "none"
+
 - name: Set Safari Settings
   osx_defaults: domain=com.apple.Safari key={{ item.key }} type={{ item.type }} value={{ item.value }}
   with_items:
