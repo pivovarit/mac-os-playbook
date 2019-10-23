@@ -33,7 +33,7 @@ TARGET="$(pwd)"
 
 if [ "$1" != "--local" ]
     then
-        git clone -q --depth=1 "${REPOSITORY}" "$PLAYBOOK_LOCATION" || error "git clone of oh-my-zsh repo failed, run with --local if already cloned"
+        git clone -q --depth=1 "${REPOSITORY}" $PLAYBOOK_LOCATION || error "git clone of playbook repo failed, run with --local if already cloned"
         TARGET='mac-os-playbook/'
 fi
 
