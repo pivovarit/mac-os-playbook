@@ -139,6 +139,11 @@
   ignore_errors: true
   become: true
 
+- name: Install dockutil
+  homebrew:
+    name: dockutil
+    state: present
+  
 - name: Remove all crap from Dock
   shell: dockutil --remove '{{ item }}'
   ignore_errors: true
