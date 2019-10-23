@@ -34,7 +34,7 @@ command -v "git" >/dev/null 2>&1 || error "git is not installed"
 
 if [ "$1" != "--local" ]
     then
-        local PLAYBOOK_LOCATION=$(mktemp -d -t playbook)
+        PLAYBOOK_LOCATION=$(mktemp -d -t playbook)
         trap 'rm -rf "$PLAYBOOK_LOCATION"' EXIT
         git clone -q --depth=1 "${REPOSITORY}" "$PLAYBOOK_LOCATION" || error "git clone of playbook repo failed, run with --local if already cloned"
         TARGET="$PLAYBOOK_LOCATION"
