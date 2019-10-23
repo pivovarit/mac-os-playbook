@@ -34,7 +34,7 @@ TARGET="$(pwd)"
 if [ "$1" != "--local" ]
     then
         git clone -q --depth=1 "${REPOSITORY}" $PLAYBOOK_LOCATION || error "git clone of playbook repo failed, run with --local if already cloned"
-        TARGET='mac-os-playbook/'
+        TARGET="$PLAYBOOK_LOCATION"
 fi
 
 if [[ $(/usr/bin/gcc 2>&1) =~ "no developer tools were found" ]] || [[ ! -x /usr/bin/gcc ]];
