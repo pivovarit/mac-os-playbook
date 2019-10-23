@@ -144,7 +144,7 @@
     name: dockutil
     state: present
   
-- name: Remove all crap from Dock
+- name: Remove Unused Dock Items
   shell: dockutil --remove '{{ item }}'
   ignore_errors: true
   with_items: "{{ dockitems_to_remove  }}"
