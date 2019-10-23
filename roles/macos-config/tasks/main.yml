@@ -134,6 +134,7 @@
 
 - name: Enable HostInfo
   command: defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
+  become: true
 
 - name: Add LoginWindowText
   command: sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText -string 'gpiwowarek@gmail.com'
