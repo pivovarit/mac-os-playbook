@@ -1,0 +1,21 @@
+- name: Kill Dock
+  command: killall Dock
+
+- name: Kill Finder
+  command: killall Finde
+
+- name: Kill Transmission
+  command: killall Transmission
+  ignore_errors: ye
+
+- name: Kill Safari
+  command: killall Safari
+  ignore_errors: ye
+
+- name: Kill SystemUIServer
+  command: killall SystemUIServer
+  ignore_errors: ye
+
+- name: Kill Terminal
+  command: killall Terminal
+  ignore_errors: yes
