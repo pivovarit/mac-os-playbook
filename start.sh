@@ -2,6 +2,9 @@
 
 set -e
 
+readonly REPOSITORY="https://github.com/pivovarit/mac-os-playbook"
+TARGET="$(pwd)"
+
 RED=""
 GREEN=""
 BLUE=""
@@ -29,13 +32,9 @@ fi
 
 command -v "git" >/dev/null 2>&1 || error "git is not installed"
 
-REPOSITORY="https://github.com/pivovarit/mac-os-playbook"
-TARGET="$(pwd)"
-
 if [ "$1" != "--local" ]
     then
         PLAYBOOK_LOCATION=$(mktemp -d -t playbook)
-	echo "Cloning playbook configuration into: ${PLAYBOOK_LOCATION}"
         trap 'rm -rf "$PLAYBOOK_LOCATION"' EXIT
         git clone -q --depth=1 "${REPOSITORY}" "$PLAYBOOK_LOCATION" || error "git clone of playbook repo failed, run with --local if already cloned"
         TARGET="$PLAYBOOK_LOCATION"
@@ -58,5 +57,3 @@ fi
 export PATH=/usr/local/bin:$PATH
 
 cd "$TARGET" && ansible-playbook playbook.yml -K
-
-
