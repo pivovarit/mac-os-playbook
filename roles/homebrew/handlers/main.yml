@@ -19,3 +19,7 @@
 - name: Kill Terminal
   command: killall Terminal
   ignore_errors: yes
+
+- name: brew cask doctor
+  command: brew cask doctor
+  changed_when: false

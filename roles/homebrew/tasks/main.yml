@@ -20,3 +20,5 @@
     accept_external_apps: yes
   ignore_errors: true
   loop: "{{ homebrew_cask }}"
+  notify:
+    - brew cask doctor
