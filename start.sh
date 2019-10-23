@@ -27,13 +27,14 @@ fi
 
 command -v "git" >/dev/null 2>&1 || error "git is not installed"
 
+PLAYBOOK_LOCATION=~/tmp/playbook
 REPOSITORY="https://github.com/pivovarit/mac-os-playbook"
 TARGET="$(pwd)"
 
 if [ "$1" != "--local" ]
     then
-      git clone -q --depth=1 "${REPOSITORY}" || error "git clone of oh-my-zsh repo failed, run with --local if already cloned"
-	    TARGET='mac-os-playbook/'
+        git clone -q --depth=1 "${REPOSITORY}" "$PLAYBOOK_LOCATION" || error "git clone of oh-my-zsh repo failed, run with --local if already cloned"
+        TARGET='mac-os-playbook/'
 fi
 
 if [[ $(/usr/bin/gcc 2>&1) =~ "no developer tools were found" ]] || [[ ! -x /usr/bin/gcc ]];
