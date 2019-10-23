@@ -42,7 +42,6 @@ homebrew:
 homebrew_cask:
   - atom
   - docker
-  - dropbox
   - google-chrome
   - google-hangouts
   - iterm2
