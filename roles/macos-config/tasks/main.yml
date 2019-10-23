@@ -123,7 +123,7 @@
 - name: Disable Safari's thumbnail cache
   osx_defaults: domain=com.apple.Safari key=DebugSnapshotsUpdatePolicy type=int value=2
 
-- name: Show battery parcent
+- name: Show Battery Percent
   osx_defaults: domain=com.apple.menuextra.battery key=ShowPercent type=string value="YES"
 
 - name: Enable Tap to Click
