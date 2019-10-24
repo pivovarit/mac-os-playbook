@@ -1,0 +1,16 @@
+---
+- name: Set Finder Settings
+  osx_defaults: domain=com.apple.finder key={{ item.key }} type={{ item.type }} value={{ item.value }}
+  with_items:
+    - { key: "ShowStatusBar", type: "bool", value: "true" }
+    - { key: "ShowPathbar", type: "bool", value: "true" }
+    - { key: "QLEnableTextSelection", type: "bool", value: "true" }
+    - { key: "_FXShowPosixPathInTitle", type: "bool", value: "true" }
+    - { key: "FXDefaultSearchScope", type: "string", value: "SCcf" }
+    - { key: "FXEnableExtensionChangeWarning", type: "bool", value: "false" }
+    - { key: "OpenWindowForNewRemovableDisk", type: "bool", value: "true" }
+    - { key: "FXPreferredViewStyle", type: "string", value: "Nlsv" }
+    - { key: "WarnOnEmptyTrash", type: "bool", value: "false" }
+    - { key: "ShowHardDrivesOnDesktop", type: "bool", value: "true" }
+  notify:
+    - Kill Finder

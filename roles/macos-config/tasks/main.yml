@@ -15,17 +15,6 @@
   notify:
     - Kill Finder
 
-- name: Set Dock Settings
-  osx_defaults: domain=com.apple.dock key={{ item.key }} type={{ item.type }} value={{ item.value }}
-  with_items:
-    - { key: "mouse-over-hilite-stack", type: "bool", value: "true" }
-    - { key: "tilesize", type: "float", value: "{{ dock_icon_size }}" }
-    - { key: "show-process-indicators", type: "bool", value: "true" }
-    - { key: "expose-animation-duration", type: "float", value: "0.1" }
-    - { key: "dashboard-in-overlay", type: "bool", value: "false" }
-  notify:
-    - Kill Dock
-
 - name: Set Terminal Settings
   osx_defaults: domain=com.apple.Terminal key={{ item.key }} type={{ item.type }} value={{ item.value }}
   with_items:
@@ -165,12 +154,8 @@
   ignore_errors: true
   become: true
 
-- name: Install dockutil
-  homebrew:
-    name: dockutil
-    state: present
-  
-- name: Remove Unused Dock Items
-  shell: dockutil --remove '{{ item }}'
-  ignore_errors: true
-  with_items: "{{ dockitems_to_remove  }}"
+- name: Dock Setup
+  include: dock-cleanup.yml
+
+- name: Finder Setup
+  include: finder.yml
