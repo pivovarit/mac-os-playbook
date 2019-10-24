@@ -76,4 +76,4 @@
     - { key: '\e[B', value: 'history-search-forward' }
 
 - name: Configure SDKMAN
-- include: sdkman-config.yml
+  include: sdkman-config.yml
