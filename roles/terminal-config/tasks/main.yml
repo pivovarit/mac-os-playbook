@@ -46,25 +46,6 @@
     line: 'plugins=(git aws gradle docker zsh-autosuggestions zsh-completions dotenv osx)'
     state: present
 
-- name: Verify if SDKMAN Is Installed
-  stat:
-    path: "~/.sdkman/"
-  register: "sdkman_installed"
-
-- name: Install SDKMAN
-  shell: 'curl -s http://get.sdkman.io | bash'
-  args:
-    executable: /bin/bash
-    warn: no
-  when: not sdkman_installed.stat.exists
-
-- name: Add SDKMAN in .zshrc
-  lineinfile:
-    dest: ~/.zshrc
-    regexp: 'sdkman-init.sh'
-    line: 'source $HOME/.sdkman/bin/sdkman-init.sh'
-    state: present
-
 - name: Enable tty_tickets
   lineinfile:
     dest: /etc/sudoers
@@ -93,3 +74,6 @@
     - { key: '^[e', value: 'end-of-line' }
     - { key: '\e[A', value: 'history-search-backward' }
     - { key: '\e[B', value: 'history-search-forward' }
+
+- name: Configure SDKMAN
+- include: sdkman-config.yml
