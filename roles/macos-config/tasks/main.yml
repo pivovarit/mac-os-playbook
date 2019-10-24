@@ -1,19 +1,12 @@
 ---
-- name: Set Finder Settings
-  osx_defaults: domain=com.apple.finder key={{ item.key }} type={{ item.type }} value={{ item.value }}
-  with_items:
-    - { key: "ShowStatusBar", type: "bool", value: "true" }
-    - { key: "ShowPathbar", type: "bool", value: "true" }
-    - { key: "QLEnableTextSelection", type: "bool", value: "true" }
-    - { key: "_FXShowPosixPathInTitle", type: "bool", value: "true" }
-    - { key: "FXDefaultSearchScope", type: "string", value: "SCcf" }
-    - { key: "FXEnableExtensionChangeWarning", type: "bool", value: "false" }
-    - { key: "OpenWindowForNewRemovableDisk", type: "bool", value: "true" }
-    - { key: "FXPreferredViewStyle", type: "string", value: "Nlsv" }
-    - { key: "WarnOnEmptyTrash", type: "bool", value: "false" }
-    - { key: "ShowHardDrivesOnDesktop", type: "bool", value: "true" }
-  notify:
-    - Kill Finder
+- name: Dock Configuration
+  include: dock-config.yml
+
+- name: Finder Configuration
+  include: finder-config.yml
+
+- name: Safari Configuration
+  include: safari-config.yml
 
 - name: Set Terminal Settings
   osx_defaults: domain=com.apple.Terminal key={{ item.key }} type={{ item.type }} value={{ item.value }}
@@ -126,19 +119,8 @@
   become: true
 
 - name: Add LoginWindowText
-  command: defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText -string 'Lasciate ogne speranza, voi ch’intrate'
+  command: "defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText -string '{{ login_window_text }}'"
   become: true
-
-- name: Set Safari Settings
-  osx_defaults: domain=com.apple.Safari key={{ item.key }} type={{ item.type }} value={{ item.value }}
-  with_items:
-    - { key: "ShowFullURLInSmartSearchField", type: "bool", value: "true" }
-    - { key: "AutoOpenSafeDownloads", type: "bool", value: "false" }
-    - { key: "com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled", type: "bool", value: "true" }
-    - { key: "IncludeInternalDebugMenu", type: "bool", value: "true" }
-    - { key: "IncludeDevelopMenu", type: "bool", value: "true" }
-  notify:
-    - Kill Safari
 
 - name: Unhide Directories
   become: true
@@ -153,9 +135,3 @@
   command: osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/iTerm.app", hidden:true}'
   ignore_errors: true
   become: true
-
-- name: Dock Setup
-  include: dock-cleanup.yml
-
-- name: Finder Setup
-  include: finder.yml

@@ -1,4 +1,5 @@
 dotfiles_repository: pivovarit/dotfiles
+login_window_text: gpiwowarek@gmail.com
 dock_icon_size: 60
 
 homebrew:
@@ -56,18 +57,15 @@ homebrew_cask:
   - wireshark
 
 dockitems_to_remove:
-  - Launchpad
   - Contacts
   - Notes
   - Reminders
   - Maps
   - Photos
-  - Messages
   - FaceTime
   - iTunes
   - iBooks
   - App Store
-  - Calendar
   - Siri
 
 github_projects:

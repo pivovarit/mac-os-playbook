@@ -1,0 +1,11 @@
+---
+- name: Set Safari Settings
+  osx_defaults: domain=com.apple.Safari key={{ item.key }} type={{ item.type }} value={{ item.value }}
+  with_items:
+    - { key: "ShowFullURLInSmartSearchField", type: "bool", value: "true" }
+    - { key: "AutoOpenSafeDownloads", type: "bool", value: "false" }
+    - { key: "com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled", type: "bool", value: "true" }
+    - { key: "IncludeInternalDebugMenu", type: "bool", value: "true" }
+    - { key: "IncludeDevelopMenu", type: "bool", value: "true" }
+  notify:
+    - Kill Safari
