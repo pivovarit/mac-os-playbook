@@ -29,6 +29,11 @@
     line: 'source $ZSH/oh-my-zsh.sh'
     state: present
 
+- name: Install Powerlevel10k Theme
+  git:
+    repo: https://github.com/romkatv/powerlevel10k.git
+    dest: ~/.oh-my-zsh/custom/themes/powerlevel10k
+
 - name: Install zsh-autosuggestions
   git:
     repo: https://github.com/zsh-users/zsh-autosuggestions

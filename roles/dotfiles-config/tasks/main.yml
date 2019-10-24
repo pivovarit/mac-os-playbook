@@ -15,6 +15,11 @@
   args:
     chdir: "{{ ansible_env.HOME }}/dotfiles"
 
+- name: Remove Existing .zshrc
+  file:
+    state: absent
+    path: "{{ ansible_env.HOME }}/.zshrc"
+
 - name: Link dotfiles
   file:
     src: "{{ item.src }}"
