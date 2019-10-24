@@ -32,6 +32,7 @@
     - { src: "~/dotfiles/.miscrc", dest: "~/.miscrc"}
     - { src: "~/dotfiles/.gitrc", dest: "~/.gitrc"}
     - { src: "~/dotfiles/.dockerrc", dest: "~/.dockerrc"}
+    - { src: "~/dotfiles/.p10k.zsh", dest: "~/.p10k.zsh"}
 
 - name: Source dotfiles in .zshrc
   lineinfile:
