@@ -39,7 +39,7 @@ fi
 
 command -v "git" >/dev/null 2>&1 || error "git is not installed"
 
-[[ "$1" != "--local" ]] || generate_temp_dir
+[[ "$1" = "--local" ]] || generate_temp_dir
 
 if [[ $(/usr/bin/gcc 2>&1) =~ "no developer tools were found" ]] || [[ ! -x /usr/bin/gcc ]];
     then
