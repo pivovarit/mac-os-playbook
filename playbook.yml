@@ -7,3 +7,9 @@
     - dotfiles-config
     - terminal-config
     - dev-env-config
+
+  pre_tasks:
+    - name: Validate if OSX
+      fail:
+        msg: "Detected an incompatible OS"
+      when: ansible_os_family != 'Darwin'
