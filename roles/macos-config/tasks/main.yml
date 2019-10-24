@@ -8,6 +8,23 @@
 - name: Safari Configuration
   include: safari-config.yml
 
+- name: Create ~/Screenshots Directory
+  file:
+    state: directory
+    path: "{{ ansible_env.HOME }}/Desktop/Screenshots"
+
+- name: Unhide Directories
+  become: true
+  command: "chflags nohidden /{{ item }}"
+  with_items:
+    - tmp
+    - opt
+    - etc
+    - var
+
+- name: Show the ~/Library folder
+  shell: chflags nohidden ~/Library
+
 - name: Set Global Settings
   osx_defaults: domain=NSGlobalDomain key={{ item.key }} type={{ item.type }} value={{ item.value }}
   with_items:
@@ -23,11 +40,6 @@
     - { key: "AppleShowAllExtensions", type: "bool", value: "true" }
     - { key: "NSAutomaticSpellingCorrectionEnabled", type: "bool", value: "false" }
     - { key: "com.apple.springing.delay", type: "float", value: "1.0" }
-
-- name: Create ~/Screenshots Directory
-  file:
-    state: directory
-    path: "{{ ansible_env.HOME }}/Desktop/Screenshots"
 
 - name: Set Remaining Settings
   osx_defaults: domain={{ item.domain }} key={{ item.key }} type={{ item.type }} value={{ item.value }}
@@ -62,26 +74,12 @@
     - { domain: "com.apple.ActivityMonitor", key: "OpenMainWindow", type: "bool", value: "true" }                       #Show the main window when launching the Activity Monitor
     - { domain: "com.apple.ActivityMonitor", key: "IconType", type: "int", value: "5" }                                 #Visualize CPU usage in the Activity Monitor Dock icon
     - { domain: "com.apple.ActivityMonitor", key: "ShowCategory", type: "int", value: "0" }                             #Show all processes in Activity Monitor
+    - { domain: "com.apple.ActivityMonitor", key: "SortDirection", type: "int", value: "0" }                            #Sort activity monitor direction
   notify:
     - Kill SystemUIServer
 
-- name: Show the ~/Library folder
-  shell: chflags nohidden ~/Library
-
 - name: Sort Activity Monitor results by CPU usage
   osx_defaults: domain=com.apple.ActivityMonitor key=SortColumn value="CPUUsage"
-
-- name: Sort activity monitor direction
-  osx_defaults: domain=com.apple.ActivityMonitor key=SortDirection type=int value=0
-
-- name: Make Safari's search banners default to Contains instead of Starts With
-  osx_defaults: domain=com.apple.Safari key=FindOnPageMatchesWordStartsOnly type=bool value=false
-
-- name: Remove useless icons from Safari's bookmarks bar
-  osx_defaults: domain=com.apple.Safari key=ProxiesInBookmarksBar state=absent
-
-- name: Disable Safari's thumbnail cache
-  osx_defaults: domain=com.apple.Safari key=DebugSnapshotsUpdatePolicy type=int value=2
 
 - name: Show Battery Percent
   osx_defaults: domain=com.apple.menuextra.battery key=ShowPercent type=string value="YES"
@@ -99,15 +97,6 @@
 - name: Add LoginWindowText
   command: "defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText -string '{{ login_window_text }}'"
   become: true
-
-- name: Unhide Directories
-  become: true
-  command: "chflags nohidden /{{ item }}"
-  with_items:
-    - tmp
-    - opt
-    - etc
-    - var
 
 - name: Run iTerm At Login
   command: osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/iTerm.app", hidden:true}'
