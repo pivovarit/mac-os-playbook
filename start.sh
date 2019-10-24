@@ -23,6 +23,13 @@ installing() {
     echo "${BLUE}""Info   | Install   | $@""${RESET}"
 }
 
+generate_temp_dir() {
+    PLAYBOOK_LOCATION=$(mktemp -d -t playbook)
+    trap 'rm -rf "$PLAYBOOK_LOCATION"' EXIT
+    git clone -q --depth=1 "${REPOSITORY}" "$PLAYBOOK_LOCATION" || error "git clone of playbook repo failed, run with --local if already cloned"
+    TARGET="$PLAYBOOK_LOCATION"
+}
+
 if [ -t 1 ]; then
     RED=$(printf '\033[31m')
     GREEN=$(printf '\033[32m')
@@ -32,13 +39,7 @@ fi
 
 command -v "git" >/dev/null 2>&1 || error "git is not installed"
 
-if [ "$1" != "--local" ]
-    then
-        PLAYBOOK_LOCATION=$(mktemp -d -t playbook)
-        trap 'rm -rf "$PLAYBOOK_LOCATION"' EXIT
-        git clone -q --depth=1 "${REPOSITORY}" "$PLAYBOOK_LOCATION" || error "git clone of playbook repo failed, run with --local if already cloned"
-        TARGET="$PLAYBOOK_LOCATION"
-fi
+[[ "$1" = "--local" ]] || generate_temp_dir
 
 if [[ $(/usr/bin/gcc 2>&1) =~ "no developer tools were found" ]] || [[ ! -x /usr/bin/gcc ]];
     then
