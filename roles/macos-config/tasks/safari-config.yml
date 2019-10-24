@@ -1,4 +1,7 @@
 ---
+- name: Remove useless icons from Safari's bookmarks bar
+  osx_defaults: domain=com.apple.Safari key=ProxiesInBookmarksBar state=absent
+
 - name: Set Safari Settings
   osx_defaults: domain=com.apple.Safari key={{ item.key }} type={{ item.type }} value={{ item.value }}
   with_items:
@@ -8,7 +11,6 @@
     - { key: "IncludeInternalDebugMenu", type: "bool", value: "true" }
     - { key: "IncludeDevelopMenu", type: "bool", value: "true" }
     - { key: "FindOnPageMatchesWordStartsOnly", type: "bool", value: "false" }
-    - { key: "ProxiesInBookmarksBar", state: "absent" }
     - { key: "DebugSnapshotsUpdatePolicy", type: "int", value: "2" }
   notify:
     - Kill Safari
