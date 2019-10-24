@@ -48,7 +48,7 @@
   lineinfile:
     dest: ~/.zshrc
     regexp: '^plugins'
-    line: 'plugins=(git aws gradle docker zsh-autosuggestions zsh-completions dotenv osx)'
+    line: 'plugins=(git aws gradle docker zsh-autosuggestions zsh-completions dotenv osx zsh-syntax-highlighting)'
     state: present
 
 - name: Enable tty_tickets
