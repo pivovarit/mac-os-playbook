@@ -87,3 +87,15 @@
 
 - name: Configure SDKMAN
   include: sdkman-config.yml
+
+- name: Verify if iTerm Runs at Login
+  command: osascript -e 'tell application "System Events" to get the name of every login item'
+  register: login_items
+  changed_when: false
+  ignore_errors: true
+
+- name: Run iTerm At Login
+  command: osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/iTerm.app", hidden:true}'
+  when: "'iTerm' not in login_items.stdout"
+  ignore_errors: true
+  become: true

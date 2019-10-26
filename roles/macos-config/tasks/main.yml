@@ -97,8 +97,3 @@
 - name: Add LoginWindowText
   command: "defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText -string '{{ login_window_text }}'"
   become: true
-
-- name: Run iTerm At Login
-  command: osascript -e 'tell application "System Events" to make login item at end with properties {path:"/Applications/iTerm.app", hidden:true}'
-  ignore_errors: true
-  become: true
