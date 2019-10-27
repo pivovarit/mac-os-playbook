@@ -1,7 +1,7 @@
 dotfiles_repository: pivovarit/dotfiles
 login_window_text: gpiwowarek@gmail.com
 dock_icon_size: 60
-dev_directory_name: dev
+dev_directory_name: Dev
 
 homebrew:
   - aws-shell
