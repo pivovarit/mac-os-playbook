@@ -19,5 +19,5 @@
 - name: Link JDKs
   file:
     src: "{{ ansible_env.HOME }}/.sdkman/candidates/java"
-    dest: "{{ ansible_env.HOME }}/{{ dev_directory_name }}/jdks"
+    dest: "{{ ansible_env.HOME }}/{{ dev_directory_name }}/.jdks"
     state: link
