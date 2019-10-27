@@ -1,17 +1,23 @@
 - name: Create ~/Dev Directory
   file:
     state: directory
-    path: ~/Dev
+    path: "{{ ansible_env.HOME }}/{{ dev_directory_name }}"
 
 - name: Pull Repositories
   git:
     repo: "https://github.com/{{ item }}.git"
-    dest: "~/Dev/{{ item }}"
+    dest: "{{ ansible_env.HOME }}/{{ dev_directory_name }}/{{ item }}"
     update: no
   loop: "{{ github_projects }}"
 
 - name: Update Remote SSH URLs
   command: "git remote set-url origin git@github.com:{{ item }}.git"
   args:
-    chdir: "~/Dev/{{ item }}"
+    chdir: "{{ ansible_env.HOME }}/{{ dev_directory_name }}/{{ item }}"
   loop: "{{ github_projects }}"
+
+- name: Link JDKs
+  file:
+    src: "{{ ansible_env.HOME }}/.sdkman/candidates/java"
+    dest: "{{ ansible_env.HOME }}/{{ dev_directory_name }}/jdks"
+    state: link
