@@ -1,4 +1,7 @@
 ---
+- name: Install Applications
+  include: homebrew-config.yml
+
 - name: Dock Configuration
   include: dock-config.yml
 

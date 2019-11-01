@@ -1,3 +1,4 @@
+---
 - name: Updating Homebrew
   homebrew:
     update_homebrew: true
