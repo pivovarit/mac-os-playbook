@@ -3,7 +3,6 @@
   connection: local
   roles:
     - macos-config
-    - homebrew
     - dotfiles-config
     - terminal-config
     - dev-env-config
