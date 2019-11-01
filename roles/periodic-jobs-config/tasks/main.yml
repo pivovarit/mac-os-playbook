@@ -1,0 +1,12 @@
+---
+- name: Clean Docker Images Periodically
+  cron:
+    name: 'clean docker'
+    hour: '0'
+    job: 'pgrep -f docker > /dev/null && docker system prune -f -a'
+
+- name: Pull dotfiles Periodically
+  cron:
+    name: 'pull dotfiles'
+    minute: '0'
+    job: 'cd ~/dotfiles && git reset --hard origin/master && git clean -fxd && git pull -q > ~/dotfiles-sync-log'
