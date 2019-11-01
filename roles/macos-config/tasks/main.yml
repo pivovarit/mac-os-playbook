@@ -100,3 +100,15 @@
 - name: Add LoginWindowText
   command: "defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText -string '{{ login_window_text }}'"
   become: true
+
+- name: Fastest InitialKeyRepeat
+  osx_defaults:
+    key: InitialKeyRepeat
+    type: int
+    value: 15
+
+- name: Fastest KeyRepeat
+  osx_defaults:
+    key: KeyRepeat
+    type: int
+    value: 2
