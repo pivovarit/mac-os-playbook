@@ -6,7 +6,6 @@
     - dotfiles-config
     - terminal-config
     - dev-env-config
-    - periodic-jobs-config
 
   pre_tasks:
     - name: Validate if OSX
