@@ -45,3 +45,6 @@
     - '.miscrc'
     - '.gitrc'
     - '.dockerrc'
+
+- name: Setup dotfiles Sync
+  include: dotfiles-sync.yml
