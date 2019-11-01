@@ -1,0 +1,6 @@
+---
+- name: Clean Docker Images Periodically
+  cron:
+    name: 'clean docker'
+    hour: '0'
+    job: 'pgrep -f docker > /dev/null && docker system prune -f -a'

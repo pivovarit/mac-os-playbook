@@ -24,3 +24,6 @@
   loop: "{{ homebrew_cask }}"
   notify:
     - brew cask doctor
+
+- name: Setup Docker Cleanup
+  include: docker-cleanup.yml
