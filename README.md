@@ -1,5 +1,5 @@
-My Ansible-backed MacOS personal configuration.
+My Ansible-backed personal MacOS configuration.
 
-Run with:
+Execute with:
 
 ```sh -c "$(curl -fsSL https://raw.githubusercontent.com/pivovarit/mac-os-playbook/master/start.sh)"```
