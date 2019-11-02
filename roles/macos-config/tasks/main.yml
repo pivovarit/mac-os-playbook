@@ -43,6 +43,8 @@
     - { key: "AppleShowAllExtensions", type: "bool", value: "true" }
     - { key: "NSAutomaticSpellingCorrectionEnabled", type: "bool", value: "false" }
     - { key: "com.apple.springing.delay", type: "float", value: "1.0" }
+    - { key: "InitialKeyRepeat", type: "int", value: "15" }
+    - { key: "KeyRepeat", type: "int", value: "2" }
 
 - name: Set Remaining Settings
   osx_defaults: domain={{ item.domain }} key={{ item.key }} type={{ item.type }} value={{ item.value }}
@@ -78,20 +80,13 @@
     - { domain: "com.apple.ActivityMonitor", key: "IconType", type: "int", value: "5" }                                 #Visualize CPU usage in the Activity Monitor Dock icon
     - { domain: "com.apple.ActivityMonitor", key: "ShowCategory", type: "int", value: "0" }                             #Show all processes in Activity Monitor
     - { domain: "com.apple.ActivityMonitor", key: "SortDirection", type: "int", value: "0" }                            #Sort activity monitor direction
+    - { domain: "com.apple.ActivityMonitor", key: "SortColumn", type: "string", value: "CPUUsage" }                     #Sort Activity Monitor results by CPU usage
+    - { domain: "com.apple.menuextra.battery", key: "ShowPercent", type: "string", value: "YES" }                       #Show Battery Percent
+    - { domain: "com.apple.AppleMultitouchTrackpad", key: "Clicking", type: "int", value: "1" }                         #Enable Tap to Click
+    - { domain: "com.apple.CrashReporter", key: "DialogType", type: "string", value: "none" }                           #Disable CrashReporter
+
   notify:
     - Kill SystemUIServer
-
-- name: Sort Activity Monitor results by CPU usage
-  osx_defaults: domain=com.apple.ActivityMonitor key=SortColumn value="CPUUsage"
-
-- name: Show Battery Percent
-  osx_defaults: domain=com.apple.menuextra.battery key=ShowPercent type=string value="YES"
-
-- name: Enable Tap to Click
-  osx_defaults: domain=com.apple.AppleMultitouchTrackpad key=Clicking type=int value=1
-
-- name: Disable CrashReporter
-  command: defaults write com.apple.CrashReporter DialogType -string "none"
 
 - name: Enable HostInfo
   command: defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
@@ -100,15 +95,3 @@
 - name: Add LoginWindowText
   command: "defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText -string '{{ login_window_text }}'"
   become: true
-
-- name: Configure InitialKeyRepeat
-  osx_defaults:
-    key: InitialKeyRepeat
-    type: int
-    value: 15
-
-- name: Configure KeyRepeat
-  osx_defaults:
-    key: KeyRepeat
-    type: int
-    value: 3
