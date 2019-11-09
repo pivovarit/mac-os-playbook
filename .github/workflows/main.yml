@@ -1,0 +1,11 @@
+name: Build on MacOS
+on: [push]
+
+jobs:
+  build:
+    runs-on: "macOS-10.14"
+    name: Build on MacOS
+    steps:
+      - uses: actions/checkout@v1
+      - name: Build
+        run: ./start.sh --local
