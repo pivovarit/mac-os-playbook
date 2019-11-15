@@ -6,6 +6,7 @@
     - { key: "tilesize", type: "float", value: "{{ dock_icon_size }}" }
     - { key: "show-process-indicators", type: "bool", value: "true" }
     - { key: "expose-animation-duration", type: "float", value: "0.1" }
+    - { key: "show-recents", type: "bool", value: "false" }
     - { key: "dashboard-in-overlay", type: "bool", value: "false" }
   notify:
     - Kill Dock
