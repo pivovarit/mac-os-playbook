@@ -1,0 +1,9 @@
+---
+- name: Install Stack
+  shell: 'curl -sSL https://get.haskellstack.org/ | sh'
+  args:
+    executable: /bin/sh
+    warn: no
+      -
+- name: Install hlint
+  command: 'stack install hlint'
