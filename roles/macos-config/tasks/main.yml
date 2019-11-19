@@ -28,6 +28,9 @@
 - name: Show the ~/Library folder
   shell: chflags nohidden ~/Library
 
+- name: Disable Boot Sound
+  command: sudo nvram SystemAudioVolume=%80
+
 - name: Set Global Settings
   osx_defaults: domain=NSGlobalDomain key={{ item.key }} type={{ item.type }} value={{ item.value }}
   with_items:
