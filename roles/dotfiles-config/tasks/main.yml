@@ -15,22 +15,19 @@
   args:
     chdir: "{{ ansible_env.HOME }}/dotfiles"
 
-- name: Remove Existing .zshrc
-  file:
-    state: absent
-    path: "{{ ansible_env.HOME }}/.zshrc"
-
 - name: Link dotfiles
   file:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
     state: link
+    force: yes
   loop:
     - { src: "~/dotfiles/karabiner.json", dest: "~/.config/karabiner/karabiner.json" }
     - { src: "~/dotfiles/.zshrc", dest: "~/.zshrc"}
     - { src: "~/dotfiles/.awsrc", dest: "~/.awsrc"}
     - { src: "~/dotfiles/.miscrc", dest: "~/.miscrc"}
     - { src: "~/dotfiles/.gitrc", dest: "~/.gitrc"}
+    - { src: "~/dotfiles/.gitconfig", dest: "~/.gitconfig"}
     - { src: "~/dotfiles/.dockerrc", dest: "~/.dockerrc"}
     - { src: "~/dotfiles/.p10k.zsh", dest: "~/.p10k.zsh"}
 

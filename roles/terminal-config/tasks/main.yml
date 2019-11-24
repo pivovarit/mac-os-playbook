@@ -88,9 +88,6 @@
 - name: Configure SDKMAN
   include: sdkman-config.yml
 
-- name: Configure Haskell Development Environment
-  include: haskell-config.yml
-
 - name: Verify if iTerm Runs at Login
   command: osascript -e 'tell application "System Events" to get the name of every login item'
   register: login_items
