@@ -77,4 +77,5 @@ github_projects:
   - pivovarit/thread-factory
   - pivovarit/pivovarit.github.io
   - pivovarit/mac-os-playbook
+  - openjdk/jdk
 
