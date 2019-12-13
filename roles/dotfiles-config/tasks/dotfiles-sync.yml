@@ -3,4 +3,4 @@
   cron:
     name: 'pull dotfiles'
     minute: '0'
-    job: 'cd ~/dotfiles && git reset --hard origin/master && git clean -fxd && git pull -q > ~/dotfiles-sync-log'
+    job: 'cd ~/dotfiles && git reset --hard origin/master &> /dev/null && git clean -fxd &> /dev/null && git pull -q &> /dev/null'
