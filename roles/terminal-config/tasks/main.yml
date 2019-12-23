@@ -99,4 +99,3 @@
   when: "'iTerm' not in login_items.stdout"
   ignore_errors: true
   become: true
-c
