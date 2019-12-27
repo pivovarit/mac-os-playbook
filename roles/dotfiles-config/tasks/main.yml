@@ -15,6 +15,11 @@
   args:
     chdir: "{{ ansible_env.HOME }}/dotfiles"
 
+- name: Create ~/.config/karabiner Directory
+  file:
+    state: directory
+    path: ".config/karabiner"
+
 - name: Link dotfiles
   file:
     src: "{{ item.src }}"
