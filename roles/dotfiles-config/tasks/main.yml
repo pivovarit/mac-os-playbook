@@ -18,7 +18,7 @@
 - name: Create ~/.config/karabiner Directory
   file:
     state: directory
-    path: ".config/karabiner"
+    path: "{{ ansible_env.HOME }}/.config/karabiner"
 
 - name: Link dotfiles
   file:
