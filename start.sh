@@ -43,14 +43,17 @@ command -v "git" >/dev/null 2>&1 || error "git is not installed"
 
 if [[ $(/usr/bin/gcc 2>&1) =~ "no developer tools were found" ]] || [[ ! -x /usr/bin/gcc ]];
     then
-        installing "xcode" && xcode-select --install
+        installing "xcode"
+        xcode-select --install
     else
         ok "xcode"
 fi
 
 if [[ ! -x /usr/local/bin/ansible ]];
     then
-        installing "ansible" && brew update && brew install ansible
+        installing "ansible"
+        brew update
+        brew install ansible
     else
         ok "ansible"
 fi
