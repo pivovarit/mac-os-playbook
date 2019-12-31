@@ -42,6 +42,7 @@ homebrew:
   - zsh
 
 homebrew_cask:
+  - rectangle
   - atom
   - docker
   - google-chrome
