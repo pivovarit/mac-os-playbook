@@ -18,7 +18,7 @@
 - name: Create ~/Library/Application Support/iTerm2/DynamicProfiles Directory
   file:
     state: directory
-    path: "{{ ansible_env.HOME }}/Library123/Application Support/iTerm2/DynamicProfiles/"
+    path: "{{ ansible_env.HOME }}/Library/Application Support/iTerm2/DynamicProfiles/"
 
 - name: Create ~/.config/karabiner Directory
   file:
