@@ -15,6 +15,11 @@
   args:
     chdir: "{{ ansible_env.HOME }}/dotfiles"
 
+- name: Create ~/Library/Application Support/iTerm2/DynamicProfiles Directory
+  file:
+    state: directory
+    path: "{{ ansible_env.HOME }}/Library123/Application Support/iTerm2/DynamicProfiles/"
+
 - name: Create ~/.config/karabiner Directory
   file:
     state: directory
@@ -35,6 +40,7 @@
     - { src: "~/dotfiles/.gitconfig", dest: "~/.gitconfig"}
     - { src: "~/dotfiles/.dockerrc", dest: "~/.dockerrc"}
     - { src: "~/dotfiles/.p10k.zsh", dest: "~/.p10k.zsh"}
+    - { src: "~/dotfiles/Profiles.json", dest: "~/Library/Application Support/iTerm2/DynamicProfiles/Profiles.json"}
 
 - name: Source dotfiles in .zshrc
   lineinfile:
