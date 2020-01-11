@@ -79,4 +79,5 @@ github_projects:
   - pivovarit/pivovarit.github.io
   - pivovarit/mac-os-playbook
   - openjdk/jdk
+  - torvalds/linux
 
