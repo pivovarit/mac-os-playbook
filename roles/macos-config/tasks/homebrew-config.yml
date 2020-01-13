@@ -3,6 +3,13 @@
   homebrew:
     update_homebrew: true
 
+- name: Installing JDK
+  homebrew_cask:
+    name: adoptopenjdk
+    state: present
+    accept_external_apps: yes
+  ignore_errors: true
+
 - name: Installing Homebrew Packages
   homebrew:
     name: "{{ item.name|default(item) }}"
