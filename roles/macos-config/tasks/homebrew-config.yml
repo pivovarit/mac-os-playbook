@@ -5,7 +5,7 @@
 
 - name: Installing JDK
   homebrew_cask:
-    name: adoptopenjdk
+    name: java
     state: present
     accept_external_apps: yes
   ignore_errors: true
