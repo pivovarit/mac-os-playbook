@@ -16,6 +16,11 @@
     chdir: "{{ ansible_env.HOME }}/{{ dev_directory_name }}/{{ item }}"
   loop: "{{ github_projects }}"
 
+- name: Create /.sdkman/candidates/java" Directory
+  file:
+    state: directory
+    path: "{{ ansible_env.HOME }}/.sdkman/candidates/java"
+
 - name: Link JDKs
   file:
     src: "{{ ansible_env.HOME }}/.sdkman/candidates/java"
