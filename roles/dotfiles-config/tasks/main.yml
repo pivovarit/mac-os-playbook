@@ -41,6 +41,7 @@
     - { src: "~/dotfiles/.dockerrc", dest: "~/.dockerrc"}
     - { src: "~/dotfiles/.p10k.zsh", dest: "~/.p10k.zsh"}
     - { src: "~/dotfiles/Profiles.json", dest: "~/Library/Application Support/iTerm2/DynamicProfiles/Profiles.json"}
+    - { src: "~/dotfiles/com.knollsoft.Rectangle.plist", dest: "~/Library/Preferences/com.knollsoft.Rectangle.plist"}
 
 - name: Source dotfiles in .zshrc
   lineinfile:
