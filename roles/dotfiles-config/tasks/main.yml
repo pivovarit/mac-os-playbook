@@ -10,6 +10,13 @@
     force: yes
     depth: 3
 
+- name: Pull espanso Private Repository
+  git:
+    repo: git@github.com:pivovarit/espanso-config.git
+    dest: "{{ ansible_env.HOME }}/.espanso"
+    force: yes
+    depth: 3
+
 - name: Update dotfiles Repository Remote URL
   command: "git remote set-url origin git@github.com:{{ dotfiles_repository }}.git"
   args:
@@ -32,16 +39,17 @@
     state: link
     force: yes
   loop:
-    - { src: "~/dotfiles/karabiner.json", dest: "~/.config/karabiner/karabiner.json" }
-    - { src: "~/dotfiles/.zshrc", dest: "~/.zshrc"}
-    - { src: "~/dotfiles/.awsrc", dest: "~/.awsrc"}
-    - { src: "~/dotfiles/.miscrc", dest: "~/.miscrc"}
-    - { src: "~/dotfiles/.gitrc", dest: "~/.gitrc"}
-    - { src: "~/dotfiles/.gitconfig", dest: "~/.gitconfig"}
-    - { src: "~/dotfiles/.dockerrc", dest: "~/.dockerrc"}
-    - { src: "~/dotfiles/.p10k.zsh", dest: "~/.p10k.zsh"}
-    - { src: "~/dotfiles/Profiles.json", dest: "~/Library/Application Support/iTerm2/DynamicProfiles/Profiles.json"}
-    - { src: "~/dotfiles/com.knollsoft.Rectangle.plist", dest: "~/Library/Preferences/com.knollsoft.Rectangle.plist"}
+    - { src: "{{ ansible_env.HOME }}/dotfiles/karabiner.json", dest: "{{ ansible_env.HOME }}/.config/karabiner/karabiner.json" }
+    - { src: "{{ ansible_env.HOME }}/dotfiles/.zshrc", dest: "{{ ansible_env.HOME }}/.zshrc"}
+    - { src: "{{ ansible_env.HOME }}/dotfiles/.awsrc", dest: "{{ ansible_env.HOME }}/.awsrc"}
+    - { src: "{{ ansible_env.HOME }}/dotfiles/.miscrc", dest: "{{ ansible_env.HOME }}/.miscrc"}
+    - { src: "{{ ansible_env.HOME }}/dotfiles/.gitrc", dest: "{{ ansible_env.HOME }}/.gitrc"}
+    - { src: "{{ ansible_env.HOME }}/dotfiles/.gitconfig", dest: "{{ ansible_env.HOME }}/.gitconfig"}
+    - { src: "{{ ansible_env.HOME }}/dotfiles/.dockerrc", dest: "{{ ansible_env.HOME }}/.dockerrc"}
+    - { src: "{{ ansible_env.HOME }}/dotfiles/.p10k.zsh", dest: "{{ ansible_env.HOME }}/.p10k.zsh"}
+    - { src: "{{ ansible_env.HOME }}/dotfiles/Profiles.json", dest: "{{ ansible_env.HOME }}/Library/Application Support/iTerm2/DynamicProfiles/Profiles.json"}
+    - { src: "{{ ansible_env.HOME }}/dotfiles/com.knollsoft.Rectangle.plist", dest: "{{ ansible_env.HOME }}/Library/Preferences/com.knollsoft.Rectangle.plist"}
+    - { src: "{{ ansible_env.HOME }}/.espanso/default.yml", dest: "{{ ansible_env.HOME }}/Library/espanso/default.yml"}
 
 - name: Source dotfiles in .zshrc
   lineinfile:
