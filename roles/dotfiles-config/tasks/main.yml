@@ -10,13 +10,6 @@
     force: yes
     depth: 3
 
-- name: Pull espanso Private Repository
-  git:
-    repo: git@github.com:pivovarit/espanso-config.git
-    dest: "{{ ansible_env.HOME }}/.espanso"
-    force: yes
-    depth: 3
-
 - name: Update dotfiles Repository Remote URL
   command: "git remote set-url origin git@github.com:{{ dotfiles_repository }}.git"
   args:
@@ -49,7 +42,6 @@
     - { src: "{{ ansible_env.HOME }}/dotfiles/.p10k.zsh", dest: "{{ ansible_env.HOME }}/.p10k.zsh"}
     - { src: "{{ ansible_env.HOME }}/dotfiles/Profiles.json", dest: "{{ ansible_env.HOME }}/Library/Application Support/iTerm2/DynamicProfiles/Profiles.json"}
     - { src: "{{ ansible_env.HOME }}/dotfiles/com.knollsoft.Rectangle.plist", dest: "{{ ansible_env.HOME }}/Library/Preferences/com.knollsoft.Rectangle.plist"}
-    - { src: "{{ ansible_env.HOME }}/.espanso/default.yml", dest: "{{ ansible_env.HOME }}/Library/espanso/default.yml"}
 
 - name: Source dotfiles in .zshrc
   lineinfile:
