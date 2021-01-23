@@ -45,8 +45,6 @@ homebrew_cask:
   - rectangle
   - atom
   - docker
-  - google-chrome
-  - google-hangouts
   - iterm2
   - jetbrains-toolbox
   - jprofiler
