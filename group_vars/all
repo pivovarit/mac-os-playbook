@@ -40,6 +40,17 @@ homebrew:
   - watch
   - zlib
   - zsh
+  - bat
+  - exa
+  - lsd
+  - delta
+  - dust
+  - duf
+  - fd
+  - bottom
+  - gtop
+  - gping
+  - procs
 
 homebrew_cask:
   - rectangle
