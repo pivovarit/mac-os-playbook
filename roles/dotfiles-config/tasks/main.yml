@@ -56,4 +56,4 @@
     - '.dockerrc'
 
 - name: Setup dotfiles Sync
-  include: dotfiles-sync.yml
+  import_tasks: dotfiles-sync.yml

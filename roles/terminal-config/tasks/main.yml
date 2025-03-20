@@ -84,7 +84,7 @@
     - { key: '\e[B', value: 'history-search-forward' }
 
 - name: Configure SDKMAN
-  include: sdkman-config.yml
+  import_tasks: sdkman-config.yml
 
 - name: Verify if iTerm Runs at Login
   command: osascript -e 'tell application "System Events" to get the name of every login item'

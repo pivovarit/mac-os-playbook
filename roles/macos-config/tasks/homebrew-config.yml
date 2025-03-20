@@ -35,4 +35,4 @@
     - brew cask doctor
 
 - name: Setup Docker Cleanup
-  include: docker-cleanup.yml
+  import_tasks: docker-cleanup.yml

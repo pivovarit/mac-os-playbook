@@ -1,15 +1,15 @@
 ---
 - name: Install Applications
-  include: homebrew-config.yml
+  import_tasks: homebrew-config.yml
 
 - name: Dock Configuration
-  include: dock-config.yml
+  import_tasks: dock-config.yml
 
 - name: Finder Configuration
-  include: finder-config.yml
+  import_tasks: finder-config.yml
 
 - name: Safari Configuration
-  include: safari-config.yml
+  import_tasks: safari-config.yml
 
 - name: Create ~/Screenshots Directory
   file:
