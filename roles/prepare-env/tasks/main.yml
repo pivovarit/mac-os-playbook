@@ -1,6 +1,6 @@
 - name: Ensuring Homebrew Is Installed
   stat:
-    path: "/usr/local/bin/brew"
+    path: "/opt/homebrew/bin/brew"
   register: "homebrew_installed"
 
 - name: Installing Homebrew
